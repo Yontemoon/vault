@@ -5,7 +5,7 @@
  * To check if its a specific primitive, you can do the simple typeof check...
  * To check for a specific object, like Date, use instanceof.
  *
- * To check enums, you can do a switch case
+ * To check union types, you can do a switch case
  *
  */
 
@@ -35,5 +35,6 @@ function getPriorty(todo: Todo) {
       break;
     case "High":
       console.log(todo.priority);
+      break;
   }
 }
