@@ -4,6 +4,8 @@
  * * In this case, we have skill levels, and each skill level is group together so that each have an array of names associated with
  * * that skill level. That is where this comes in...
  *
+ * ! Might also use Record instead
+ *
  */
 
 type SkillLevel = "Beginner" | "Intermediate" | "Expert" | "Master";
