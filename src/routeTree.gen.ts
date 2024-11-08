@@ -11,10 +11,31 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as TypescriptImport } from './routes/typescript'
+import { Route as ReactImport } from './routes/react'
+import { Route as JavascriptImport } from './routes/javascript'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
+
+const TypescriptRoute = TypescriptImport.update({
+  id: '/typescript',
+  path: '/typescript',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReactRoute = ReactImport.update({
+  id: '/react',
+  path: '/react',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const JavascriptRoute = JavascriptImport.update({
+  id: '/javascript',
+  path: '/javascript',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AboutRoute = AboutImport.update({
   id: '/about',
@@ -46,6 +67,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/javascript': {
+      id: '/javascript'
+      path: '/javascript'
+      fullPath: '/javascript'
+      preLoaderRoute: typeof JavascriptImport
+      parentRoute: typeof rootRoute
+    }
+    '/react': {
+      id: '/react'
+      path: '/react'
+      fullPath: '/react'
+      preLoaderRoute: typeof ReactImport
+      parentRoute: typeof rootRoute
+    }
+    '/typescript': {
+      id: '/typescript'
+      path: '/typescript'
+      fullPath: '/typescript'
+      preLoaderRoute: typeof TypescriptImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +96,51 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/javascript': typeof JavascriptRoute
+  '/react': typeof ReactRoute
+  '/typescript': typeof TypescriptRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/javascript': typeof JavascriptRoute
+  '/react': typeof ReactRoute
+  '/typescript': typeof TypescriptRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/javascript': typeof JavascriptRoute
+  '/react': typeof ReactRoute
+  '/typescript': typeof TypescriptRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/about' | '/javascript' | '/react' | '/typescript'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/javascript' | '/react' | '/typescript'
+  id: '__root__' | '/' | '/about' | '/javascript' | '/react' | '/typescript'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  JavascriptRoute: typeof JavascriptRoute
+  ReactRoute: typeof ReactRoute
+  TypescriptRoute: typeof TypescriptRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  JavascriptRoute: JavascriptRoute,
+  ReactRoute: ReactRoute,
+  TypescriptRoute: TypescriptRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +154,10 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about"
+        "/about",
+        "/javascript",
+        "/react",
+        "/typescript"
       ]
     },
     "/": {
@@ -105,6 +165,15 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/javascript": {
+      "filePath": "javascript.tsx"
+    },
+    "/react": {
+      "filePath": "react.tsx"
+    },
+    "/typescript": {
+      "filePath": "typescript.tsx"
     }
   }
 }
