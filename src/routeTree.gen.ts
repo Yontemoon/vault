@@ -11,31 +11,14 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as TypescriptImport } from './routes/typescript'
-import { Route as ReactImport } from './routes/react'
-import { Route as JavascriptImport } from './routes/javascript'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as TypescriptIndexImport } from './routes/typescript/index'
+import { Route as ReactIndexImport } from './routes/react/index'
+import { Route as JavascriptIndexImport } from './routes/javascript/index'
+import { Route as TypescriptConstReadOnlyImport } from './routes/typescript/const-read-only'
 
 // Create/Update Routes
-
-const TypescriptRoute = TypescriptImport.update({
-  id: '/typescript',
-  path: '/typescript',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ReactRoute = ReactImport.update({
-  id: '/react',
-  path: '/react',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const JavascriptRoute = JavascriptImport.update({
-  id: '/javascript',
-  path: '/javascript',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const AboutRoute = AboutImport.update({
   id: '/about',
@@ -46,6 +29,30 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TypescriptIndexRoute = TypescriptIndexImport.update({
+  id: '/typescript/',
+  path: '/typescript/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReactIndexRoute = ReactIndexImport.update({
+  id: '/react/',
+  path: '/react/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const JavascriptIndexRoute = JavascriptIndexImport.update({
+  id: '/javascript/',
+  path: '/javascript/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const TypescriptConstReadOnlyRoute = TypescriptConstReadOnlyImport.update({
+  id: '/typescript/const-read-only',
+  path: '/typescript/const-read-only',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -67,25 +74,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
-    '/javascript': {
-      id: '/javascript'
+    '/typescript/const-read-only': {
+      id: '/typescript/const-read-only'
+      path: '/typescript/const-read-only'
+      fullPath: '/typescript/const-read-only'
+      preLoaderRoute: typeof TypescriptConstReadOnlyImport
+      parentRoute: typeof rootRoute
+    }
+    '/javascript/': {
+      id: '/javascript/'
       path: '/javascript'
       fullPath: '/javascript'
-      preLoaderRoute: typeof JavascriptImport
+      preLoaderRoute: typeof JavascriptIndexImport
       parentRoute: typeof rootRoute
     }
-    '/react': {
-      id: '/react'
+    '/react/': {
+      id: '/react/'
       path: '/react'
       fullPath: '/react'
-      preLoaderRoute: typeof ReactImport
+      preLoaderRoute: typeof ReactIndexImport
       parentRoute: typeof rootRoute
     }
-    '/typescript': {
-      id: '/typescript'
+    '/typescript/': {
+      id: '/typescript/'
       path: '/typescript'
       fullPath: '/typescript'
-      preLoaderRoute: typeof TypescriptImport
+      preLoaderRoute: typeof TypescriptIndexImport
       parentRoute: typeof rootRoute
     }
   }
@@ -96,51 +110,75 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/javascript': typeof JavascriptRoute
-  '/react': typeof ReactRoute
-  '/typescript': typeof TypescriptRoute
+  '/typescript/const-read-only': typeof TypescriptConstReadOnlyRoute
+  '/javascript': typeof JavascriptIndexRoute
+  '/react': typeof ReactIndexRoute
+  '/typescript': typeof TypescriptIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/javascript': typeof JavascriptRoute
-  '/react': typeof ReactRoute
-  '/typescript': typeof TypescriptRoute
+  '/typescript/const-read-only': typeof TypescriptConstReadOnlyRoute
+  '/javascript': typeof JavascriptIndexRoute
+  '/react': typeof ReactIndexRoute
+  '/typescript': typeof TypescriptIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/javascript': typeof JavascriptRoute
-  '/react': typeof ReactRoute
-  '/typescript': typeof TypescriptRoute
+  '/typescript/const-read-only': typeof TypescriptConstReadOnlyRoute
+  '/javascript/': typeof JavascriptIndexRoute
+  '/react/': typeof ReactIndexRoute
+  '/typescript/': typeof TypescriptIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/javascript' | '/react' | '/typescript'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/typescript/const-read-only'
+    | '/javascript'
+    | '/react'
+    | '/typescript'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/javascript' | '/react' | '/typescript'
-  id: '__root__' | '/' | '/about' | '/javascript' | '/react' | '/typescript'
+  to:
+    | '/'
+    | '/about'
+    | '/typescript/const-read-only'
+    | '/javascript'
+    | '/react'
+    | '/typescript'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/typescript/const-read-only'
+    | '/javascript/'
+    | '/react/'
+    | '/typescript/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  JavascriptRoute: typeof JavascriptRoute
-  ReactRoute: typeof ReactRoute
-  TypescriptRoute: typeof TypescriptRoute
+  TypescriptConstReadOnlyRoute: typeof TypescriptConstReadOnlyRoute
+  JavascriptIndexRoute: typeof JavascriptIndexRoute
+  ReactIndexRoute: typeof ReactIndexRoute
+  TypescriptIndexRoute: typeof TypescriptIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  JavascriptRoute: JavascriptRoute,
-  ReactRoute: ReactRoute,
-  TypescriptRoute: TypescriptRoute,
+  TypescriptConstReadOnlyRoute: TypescriptConstReadOnlyRoute,
+  JavascriptIndexRoute: JavascriptIndexRoute,
+  ReactIndexRoute: ReactIndexRoute,
+  TypescriptIndexRoute: TypescriptIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -155,9 +193,10 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/about",
-        "/javascript",
-        "/react",
-        "/typescript"
+        "/typescript/const-read-only",
+        "/javascript/",
+        "/react/",
+        "/typescript/"
       ]
     },
     "/": {
@@ -166,14 +205,17 @@ export const routeTree = rootRoute
     "/about": {
       "filePath": "about.tsx"
     },
-    "/javascript": {
-      "filePath": "javascript.tsx"
+    "/typescript/const-read-only": {
+      "filePath": "typescript/const-read-only.tsx"
     },
-    "/react": {
-      "filePath": "react.tsx"
+    "/javascript/": {
+      "filePath": "javascript/index.tsx"
     },
-    "/typescript": {
-      "filePath": "typescript.tsx"
+    "/react/": {
+      "filePath": "react/index.tsx"
+    },
+    "/typescript/": {
+      "filePath": "typescript/index.tsx"
     }
   }
 }

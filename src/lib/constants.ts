@@ -1,5 +1,9 @@
 const NAVIGATION_LINKS = [
   {
+    name: "Home",
+    href: "/",
+  },
+  {
     name: "Javascript",
     href: "/javascript",
   },
