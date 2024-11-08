@@ -1,3 +1,4 @@
+import { Card } from "@/components/ui/card";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/about")({
@@ -5,5 +6,9 @@ export const Route = createFileRoute("/about")({
 });
 
 function About() {
-  return <div className="p-2">Hello from About!</div>;
+  return (
+    <div className="p-2">
+      <Card>hello world</Card>
+    </div>
+  );
 }
