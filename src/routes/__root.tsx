@@ -22,7 +22,7 @@ function Root () {
       <HeaderNavBar />
       <main>
       {paths.length - 1 > 1 && <SidebarTrigger/>}
-        <Outlet />
+          <Outlet />
 
       </main>
       <TanStackRouterDevtools />
