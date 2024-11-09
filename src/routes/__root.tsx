@@ -16,15 +16,15 @@ function Root() {
   const isParent = useIsParent();
 
   return (
-    <>
+    <div className="mx-auto w-ful max-w-6xl">
       <SidebarProvider>
         {isParent && <AppSidebar />}
-        <main>
+        <main className="">
           <HeaderNavBar />
           <Outlet />
         </main>
         <TanStackRouterDevtools />
       </SidebarProvider>
-    </>
+    </div>
   );
 }
