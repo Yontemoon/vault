@@ -19,4 +19,11 @@ function urlToTitle(url: string): string {
   return title.trim();
 }
 
-export { cn, urlToTitle };
+// RETURN THE PARENT URL IN ROUTES
+// /typescript/grouped-types => /typescript
+function getParentUrl(url: string): string {
+  const urlArr = url.split("/");
+  return "/" + urlArr[1];
+}
+
+export { cn, urlToTitle, getParentUrl };

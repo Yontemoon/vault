@@ -18,14 +18,15 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import useChildRoutes from "@/hooks/use-child-routes";
-import { urlToTitle } from "@/lib/utils";
+import { getParentUrl, urlToTitle } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { NAVIGATION_LINKS } from "@/lib/constants";
 
 function AppSidebar() {
   const routes = useChildRoutes();
+  const location = useLocation();
 
   return (
     <Sidebar variant="floating">
@@ -35,7 +36,7 @@ function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  Select Workspace
+                  {urlToTitle(getParentUrl(location.pathname))}
                   <ChevronDown className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
