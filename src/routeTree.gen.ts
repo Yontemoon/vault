@@ -16,6 +16,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as TypescriptIndexImport } from './routes/typescript/index'
 import { Route as ReactIndexImport } from './routes/react/index'
 import { Route as JavascriptIndexImport } from './routes/javascript/index'
+import { Route as CssIndexImport } from './routes/css/index'
 import { Route as TypescriptReturnTypesImport } from './routes/typescript/return-types'
 import { Route as TypescriptRecordImport } from './routes/typescript/record'
 import { Route as TypescriptPickAndOmitImport } from './routes/typescript/pick-and-omit'
@@ -59,6 +60,12 @@ const ReactIndexRoute = ReactIndexImport.update({
 const JavascriptIndexRoute = JavascriptIndexImport.update({
   id: '/javascript/',
   path: '/javascript/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const CssIndexRoute = CssIndexImport.update({
+  id: '/css/',
+  path: '/css/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -251,6 +258,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TypescriptReturnTypesImport
       parentRoute: typeof rootRoute
     }
+    '/css/': {
+      id: '/css/'
+      path: '/css'
+      fullPath: '/css'
+      preLoaderRoute: typeof CssIndexImport
+      parentRoute: typeof rootRoute
+    }
     '/javascript/': {
       id: '/javascript/'
       path: '/javascript'
@@ -293,6 +307,7 @@ export interface FileRoutesByFullPath {
   '/typescript/pick-and-omit': typeof TypescriptPickAndOmitRoute
   '/typescript/record': typeof TypescriptRecordRoute
   '/typescript/return-types': typeof TypescriptReturnTypesRoute
+  '/css': typeof CssIndexRoute
   '/javascript': typeof JavascriptIndexRoute
   '/react': typeof ReactIndexRoute
   '/typescript': typeof TypescriptIndexRoute
@@ -314,6 +329,7 @@ export interface FileRoutesByTo {
   '/typescript/pick-and-omit': typeof TypescriptPickAndOmitRoute
   '/typescript/record': typeof TypescriptRecordRoute
   '/typescript/return-types': typeof TypescriptReturnTypesRoute
+  '/css': typeof CssIndexRoute
   '/javascript': typeof JavascriptIndexRoute
   '/react': typeof ReactIndexRoute
   '/typescript': typeof TypescriptIndexRoute
@@ -336,6 +352,7 @@ export interface FileRoutesById {
   '/typescript/pick-and-omit': typeof TypescriptPickAndOmitRoute
   '/typescript/record': typeof TypescriptRecordRoute
   '/typescript/return-types': typeof TypescriptReturnTypesRoute
+  '/css/': typeof CssIndexRoute
   '/javascript/': typeof JavascriptIndexRoute
   '/react/': typeof ReactIndexRoute
   '/typescript/': typeof TypescriptIndexRoute
@@ -359,6 +376,7 @@ export interface FileRouteTypes {
     | '/typescript/pick-and-omit'
     | '/typescript/record'
     | '/typescript/return-types'
+    | '/css'
     | '/javascript'
     | '/react'
     | '/typescript'
@@ -379,6 +397,7 @@ export interface FileRouteTypes {
     | '/typescript/pick-and-omit'
     | '/typescript/record'
     | '/typescript/return-types'
+    | '/css'
     | '/javascript'
     | '/react'
     | '/typescript'
@@ -399,6 +418,7 @@ export interface FileRouteTypes {
     | '/typescript/pick-and-omit'
     | '/typescript/record'
     | '/typescript/return-types'
+    | '/css/'
     | '/javascript/'
     | '/react/'
     | '/typescript/'
@@ -421,6 +441,7 @@ export interface RootRouteChildren {
   TypescriptPickAndOmitRoute: typeof TypescriptPickAndOmitRoute
   TypescriptRecordRoute: typeof TypescriptRecordRoute
   TypescriptReturnTypesRoute: typeof TypescriptReturnTypesRoute
+  CssIndexRoute: typeof CssIndexRoute
   JavascriptIndexRoute: typeof JavascriptIndexRoute
   ReactIndexRoute: typeof ReactIndexRoute
   TypescriptIndexRoute: typeof TypescriptIndexRoute
@@ -442,6 +463,7 @@ const rootRouteChildren: RootRouteChildren = {
   TypescriptPickAndOmitRoute: TypescriptPickAndOmitRoute,
   TypescriptRecordRoute: TypescriptRecordRoute,
   TypescriptReturnTypesRoute: TypescriptReturnTypesRoute,
+  CssIndexRoute: CssIndexRoute,
   JavascriptIndexRoute: JavascriptIndexRoute,
   ReactIndexRoute: ReactIndexRoute,
   TypescriptIndexRoute: TypescriptIndexRoute,
@@ -472,6 +494,7 @@ export const routeTree = rootRoute
         "/typescript/pick-and-omit",
         "/typescript/record",
         "/typescript/return-types",
+        "/css/",
         "/javascript/",
         "/react/",
         "/typescript/"
@@ -521,6 +544,9 @@ export const routeTree = rootRoute
     },
     "/typescript/return-types": {
       "filePath": "typescript/return-types.tsx"
+    },
+    "/css/": {
+      "filePath": "css/index.tsx"
     },
     "/javascript/": {
       "filePath": "javascript/index.tsx"

@@ -1,17 +1,15 @@
 import { useLocation } from "@tanstack/react-router";
 
+import { NAVIGATION_LINKS } from "@/lib/constants";
+
 // TODO: RENAME SOMETHING MORE DESCRIPTIVE!
 function useIsParent() {
   const location = useLocation();
-  const parentRoute = location.pathname.split("/")[1];
 
-  if (
-    parentRoute === "react" ||
-    parentRoute === "typescript" ||
-    parentRoute === "javascript"
-  )
-    return true;
-  return false;
+  return NAVIGATION_LINKS.some((element) => {
+    if (location.pathname === "/") return false;
+    return element.href === location.pathname;
+  });
 }
 
 export default useIsParent;

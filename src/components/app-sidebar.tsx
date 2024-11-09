@@ -1,56 +1,65 @@
-import { Calendar, Home, Inbox, Search, Settings } from "lucide-react";
-
 import {
   Sidebar,
   SidebarContent,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
-import { Link, useRouter } from "@tanstack/react-router";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import { Link } from "@tanstack/react-router";
 import useChildRoutes from "@/hooks/use-child-routes";
 import { urlToTitle } from "@/lib/utils";
-
-// Menu items.
-const items = [
-  {
-    title: "Home",
-    url: "#",
-    icon: Home,
-  },
-  {
-    title: "Inbox",
-    url: "#",
-    icon: Inbox,
-  },
-  {
-    title: "Calendar",
-    url: "#",
-    icon: Calendar,
-  },
-  {
-    title: "Search",
-    url: "#",
-    icon: Search,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-];
+import { ChevronDown } from "lucide-react";
+import { NAVIGATION_LINKS } from "@/lib/constants";
 
 function AppSidebar() {
   const routes = useChildRoutes();
 
   return (
-    <Sidebar>
+    <Sidebar variant="floating">
+      <SidebarHeader>
+        <SidebarMenu>
+          <SidebarMenuItem>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <SidebarMenuButton>
+                  Select Workspace
+                  <ChevronDown className="ml-auto" />
+                </SidebarMenuButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
+                <DropdownMenuLabel>Section</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                {NAVIGATION_LINKS.map((navLink, i) => {
+                  if (navLink.href === "/") return;
+                  return (
+                    <DropdownMenuItem key={i} asChild>
+                      <Link href={navLink.href}>
+                        <span>{navLink.name}</span>
+                      </Link>
+                    </DropdownMenuItem>
+                  );
+                })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </SidebarMenuItem>
+        </SidebarMenu>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
-          <SidebarGroupLabel>Application</SidebarGroupLabel>
+          <SidebarGroupLabel>Sections</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {routes.map(({ key, value }) => {
