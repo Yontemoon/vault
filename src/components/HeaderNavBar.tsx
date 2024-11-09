@@ -17,7 +17,7 @@ const HeaderNavBar = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <SidebarTrigger className="" />
+        <SidebarTrigger />
 
         <NavigationMenuItem className="p-2 flex justify-center align-middle">
           {NAVIGATION_LINKS.map((n, i) => (
