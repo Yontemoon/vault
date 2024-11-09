@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -13,12 +11,15 @@ import {
 import { Button } from "./ui/button";
 import { Link } from "@tanstack/react-router";
 import { NAVIGATION_LINKS } from "@/lib/constants";
+import { SidebarTrigger } from "./ui/sidebar";
 
 const HeaderNavBar = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem className="p-2">
+        <SidebarTrigger className="" />
+
+        <NavigationMenuItem className="p-2 flex justify-center align-middle">
           {NAVIGATION_LINKS.map((n, i) => (
             <Link key={i} to={n.href}>
               <Button variant={"link"}>{n.name}</Button>

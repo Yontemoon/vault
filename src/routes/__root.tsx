@@ -1,33 +1,24 @@
 import HeaderNavBar from "@/components/HeaderNavBar";
-import { Card } from "@/components/ui/card";
-import { createRootRoute, Outlet, useRouterState } from "@tanstack/react-router";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
-
+import { SidebarProvider } from "@/components/ui/sidebar";
+import AppSidebar from "@/components/app-sidebar";
 
 export const Route = createRootRoute({
   component: Root,
 });
 
-
-function Root () {
-  const router = useRouterState()
-  console.log(router);
-  const paths = router.location.pathname.split("/")
-  console.log(paths);
-
+function Root() {
   return (
     <>
-    <SidebarProvider>
-      <HeaderNavBar />
-      <main>
-      {paths.length - 1 > 1 && <SidebarTrigger/>}
+      <SidebarProvider>
+        <AppSidebar />
+        <main>
+          <HeaderNavBar />
           <Outlet />
-
-      </main>
-      <TanStackRouterDevtools />
-    </SidebarProvider>
-      
+        </main>
+        <TanStackRouterDevtools />
+      </SidebarProvider>
     </>
-  )
+  );
 }
