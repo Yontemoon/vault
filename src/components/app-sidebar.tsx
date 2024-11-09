@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/sidebar";
 import { Link, useRouter } from "@tanstack/react-router";
 import useChildRoutes from "@/hooks/use-child-routes";
+import { urlToTitle } from "@/lib/utils";
 
 // Menu items.
 const items = [
@@ -52,16 +53,23 @@ function AppSidebar() {
           <SidebarGroupLabel>Application</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {routes.map(({ key, value }) => (
-                <SidebarMenuItem key={key}>
-                  <SidebarMenuButton asChild>
-                    <Link to={value.fullPath}>
-                      {/* <item.icon /> */}
-                      <span>{value.id}</span>
-                    </Link>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {routes.map(({ key, value }) => {
+                const title = urlToTitle(value.id);
+                const titleArr = title.split(" ");
+                titleArr.shift();
+                return (
+                  <SidebarMenuItem key={key}>
+                    <SidebarMenuButton asChild>
+                      <Link
+                        to={value.fullPath}
+                        activeProps={{ className: "font-bold" }}
+                      >
+                        <span>{titleArr.join("")}</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

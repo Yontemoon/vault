@@ -9,21 +9,24 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { Button } from "./ui/button";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
 import { NAVIGATION_LINKS } from "@/lib/constants";
 import { SidebarTrigger } from "./ui/sidebar";
 
 const HeaderNavBar = () => {
+  const location = useLocation();
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <SidebarTrigger />
-
+        {location.pathname !== "/" && <SidebarTrigger />}
         <NavigationMenuItem className="p-2 flex justify-center align-middle">
           {NAVIGATION_LINKS.map((n, i) => (
-            <Link key={i} to={n.href}>
-              <Button variant={"link"}>{n.name}</Button>
-            </Link>
+            <Button variant={"link"} key={i} asChild>
+              <Link to={n.href} activeProps={{ className: "font-bold" }}>
+                {n.name}
+              </Link>
+            </Button>
           ))}
         </NavigationMenuItem>
       </NavigationMenuList>
