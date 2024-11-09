@@ -16,18 +16,34 @@ import { SidebarTrigger } from "./ui/sidebar";
 const HeaderNavBar = () => {
   const location = useLocation();
 
+  if (location.pathname === "/") {
+    return (
+      <NavigationMenu>
+        <NavigationMenuList>
+          {location.pathname !== "/" && <SidebarTrigger />}
+          <NavigationMenuItem className="p-2 flex justify-center align-middle">
+            {NAVIGATION_LINKS.map((n, i) => (
+              <Button variant={"link"} key={i} asChild>
+                <Link to={n.href} activeProps={{ className: "font-bold" }}>
+                  {n.name}
+                </Link>
+              </Button>
+            ))}
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    );
+  }
+
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        {location.pathname !== "/" && <SidebarTrigger />}
         <NavigationMenuItem className="p-2 flex justify-center align-middle">
-          {NAVIGATION_LINKS.map((n, i) => (
-            <Button variant={"link"} key={i} asChild>
-              <Link to={n.href} activeProps={{ className: "font-bold" }}>
-                {n.name}
-              </Link>
-            </Button>
-          ))}
+          <Button variant={"link"} asChild>
+            <Link to={"/"} activeProps={{ className: "font-bold" }}>
+              Home
+            </Link>
+          </Button>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
