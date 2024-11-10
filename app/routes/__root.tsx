@@ -11,6 +11,8 @@ import AppSidebar from "../components/app-sidebar";
 import Error from "../components/error";
 import useIsParent from "../hooks/use-is-parent";
 
+import styles from "@/index.css?url";
+
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
 
@@ -27,22 +29,26 @@ export const Route = createRootRoute({
       title: "Monte's Vault",
     },
   ],
-  // links: () => [
-  //   {
-  //     rel: "preconnect",
-  //     href: "https://fonts.googleapis.com",
-  //   },
-  //   {
-  //     ref: "preconnect",
-  //     href: "https://fonts.gstatic.com",
-  //     // ! DO I NEED THIS?
-  //     // crossOrigin,
-  //   },
-  //   {
-  //     rel: "stylesheet",
-  //     href: "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap",
-  //   },
-  // ],
+  links: () => [
+    {
+      rel: "stylesheet",
+      href: styles,
+    },
+    //   {
+    //     rel: "preconnect",
+    //     href: "https://fonts.googleapis.com",
+    //   },
+    //   {
+    //     ref: "preconnect",
+    //     href: "https://fonts.gstatic.com",
+    //     // ! DO I NEED THIS?
+    //     // crossOrigin,
+    //   },
+    //   {
+    //     rel: "stylesheet",
+    //     href: "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap",
+    //   },
+  ],
   component: RootComponent,
   // errorComponent: Error,
   // notFoundComponent: Error,
