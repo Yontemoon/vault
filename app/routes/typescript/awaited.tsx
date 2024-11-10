@@ -1,11 +1,21 @@
 import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import Heading from "@/components/heading";
-import { createHighlighter } from "shiki";
+import { codeToHtml, createHighlighter } from "shiki";
 import { Card } from "@/components/ui/card";
+import { createServerFn } from "@tanstack/start";
+
+const serverFunctionTest = createServerFn("GET", async () => {
+  const html = await codeToHtml(code, {
+    lang: "typescript",
+    theme: "vitesse-dark",
+  });
+  return html;
+});
 
 export const Route = createFileRoute("/typescript/awaited")({
   component: RouteComponent,
+  loader: async () => serverFunctionTest(),
 });
 
 const code = `async function doSomething() {
@@ -20,23 +30,7 @@ function useSomething(personInfo: Awaited<ReturnType<typeof doSomething>>) {
 }"`;
 
 function RouteComponent() {
-  const [highlight, setHighlight] = React.useState<string>();
-  React.useEffect(() => {
-    const getFetch = async () => {
-      const highlighter = await createHighlighter({
-        themes: ["vitesse-dark"],
-        langs: ["typescript"],
-      });
-
-      const html = highlighter.codeToHtml(code, {
-        lang: "typescript",
-        theme: "vitesse-dark",
-      });
-      console.log(html);
-      setHighlight(html);
-    };
-    getFetch();
-  }, []);
+  const highlight = Route.useLoaderData();
 
   return (
     <div>
