@@ -50,26 +50,9 @@ export const Route = createRootRoute({
     //   },
   ],
   component: RootComponent,
-  // errorComponent: Error,
-  // notFoundComponent: Error,
+  errorComponent: Error,
+  notFoundComponent: Error,
 });
-
-// function Root() {
-//   const isParent = useIsParent();
-
-//   return (
-//     <div className="mx-auto w-ful max-w-6xl ">
-//       <SidebarProvider>
-//         {isParent && <AppSidebar />}
-//         <main className="text-left">
-//           <HeaderNavBar />
-//           <Outlet />
-//         </main>
-//         <TanStackRouterDevtools />
-//       </SidebarProvider>
-//     </div>
-//   );
-// }
 
 function RootComponent() {
   const isParent = useIsParent();
