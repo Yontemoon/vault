@@ -17,14 +17,16 @@ function Root() {
 
   return (
     <div className="mx-auto w-ful max-w-6xl ">
+      <HeaderNavBar />
+
       <SidebarProvider>
         {isParent && <AppSidebar />}
-        <main className="text-left">
-          <HeaderNavBar />
+        <main className="">
           <Outlet />
         </main>
-        <TanStackRouterDevtools />
       </SidebarProvider>
+
+      <TanStackRouterDevtools />
     </div>
   );
 }

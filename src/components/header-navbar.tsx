@@ -18,7 +18,7 @@ const HeaderNavBar = () => {
 
   if (location.pathname === "/") {
     return (
-      <NavigationMenu>
+      <NavigationMenu className="w-full flex justify-center">
         <NavigationMenuList>
           {location.pathname !== "/" && <SidebarTrigger />}
           <NavigationMenuItem className="p-2 flex justify-center align-middle">
