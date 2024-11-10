@@ -23,7 +23,7 @@ const HeaderNavBar = () => {
           {location.pathname !== "/" && <SidebarTrigger />}
           <NavigationMenuItem className="p-2 flex justify-center align-middle">
             {NAVIGATION_LINKS.map((n, i) => (
-              <Button variant={"link"} key={i} asChild>
+              <Button variant={"link"} key={i} asChild className="text-lg">
                 <Link to={n.href} activeProps={{ className: "font-bold" }}>
                   {n.name}
                 </Link>
@@ -39,7 +39,7 @@ const HeaderNavBar = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem className="p-2 flex justify-end align-middle w-full">
-          <Button variant={"link"} asChild>
+          <Button variant={"link"} asChild className="text-lg">
             <Link to={"/"} activeProps={{ className: "font-bold" }}>
               Home
             </Link>

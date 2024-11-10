@@ -11,7 +11,6 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
 import { Route as TypescriptIndexImport } from './routes/typescript/index'
 import { Route as ReactIndexImport } from './routes/react/index'
@@ -32,12 +31,6 @@ import { Route as ReactGenericComponentsImport } from './routes/react/generic-co
 import { Route as ReactElementPropsImport } from './routes/react/element-props'
 
 // Create/Update Routes
-
-const AboutRoute = AboutImport.update({
-  id: '/about',
-  path: '/about',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -158,13 +151,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
-      parentRoute: typeof rootRoute
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
     '/react/element-props': {
@@ -293,7 +279,6 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/react/element-props': typeof ReactElementPropsRoute
   '/react/generic-components': typeof ReactGenericComponentsRoute
   '/react/use-ref': typeof ReactUseRefRoute
@@ -315,7 +300,6 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/react/element-props': typeof ReactElementPropsRoute
   '/react/generic-components': typeof ReactGenericComponentsRoute
   '/react/use-ref': typeof ReactUseRefRoute
@@ -338,7 +322,6 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/react/element-props': typeof ReactElementPropsRoute
   '/react/generic-components': typeof ReactGenericComponentsRoute
   '/react/use-ref': typeof ReactUseRefRoute
@@ -362,7 +345,6 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/react/element-props'
     | '/react/generic-components'
     | '/react/use-ref'
@@ -383,7 +365,6 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/react/element-props'
     | '/react/generic-components'
     | '/react/use-ref'
@@ -404,7 +385,6 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/react/element-props'
     | '/react/generic-components'
     | '/react/use-ref'
@@ -427,7 +407,6 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   ReactElementPropsRoute: typeof ReactElementPropsRoute
   ReactGenericComponentsRoute: typeof ReactGenericComponentsRoute
   ReactUseRefRoute: typeof ReactUseRefRoute
@@ -449,7 +428,6 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   ReactElementPropsRoute: ReactElementPropsRoute,
   ReactGenericComponentsRoute: ReactGenericComponentsRoute,
   ReactUseRefRoute: ReactUseRefRoute,
@@ -480,7 +458,6 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about",
         "/react/element-props",
         "/react/generic-components",
         "/react/use-ref",
@@ -502,9 +479,6 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
-    },
-    "/about": {
-      "filePath": "about.tsx"
     },
     "/react/element-props": {
       "filePath": "react/element-props.tsx"
