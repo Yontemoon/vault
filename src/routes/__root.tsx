@@ -5,6 +5,7 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import AppSidebar from "@/components/app-sidebar";
 import Error from "@/components/error";
 import useIsParent from "@/hooks/use-is-parent";
+import { cn } from "@/lib/utils";
 
 export const Route = createRootRoute({
   component: Root,
@@ -16,7 +17,7 @@ function Root() {
   const isParent = useIsParent();
 
   return (
-    <div className="mx-auto w-ful max-w-6xl ">
+    <div className={cn("mx-auto w-full", isParent ? "max-w-6xl" : "max-w-4xl")}>
       <SidebarProvider>
         {isParent && <AppSidebar />}
         <main className="text-left">
