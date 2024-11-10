@@ -25,5 +25,13 @@ export default defineConfig({
   server: {
     port: 3000,
     open: true,
+    proxy: {
+      // Proxy setup for development
+      "/_server": {
+        target: "https://vault-git-shiki-test-monte-yoons-projects.vercel.app",
+        changeOrigin: true,
+        secure: false,
+      },
+    },
   },
 });
