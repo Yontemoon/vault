@@ -1,3 +1,4 @@
+import Heading from "@/components/heading";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/typescript/")({
@@ -5,5 +6,9 @@ export const Route = createFileRoute("/typescript/")({
 });
 
 function RouteComponent() {
-  return "Hello /typescript/!";
+  return (
+    <div>
+      <Heading>Hello World</Heading>
+    </div>
+  );
 }

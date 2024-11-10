@@ -16,10 +16,10 @@ function Root() {
   const isParent = useIsParent();
 
   return (
-    <div className="mx-auto w-ful max-w-6xl">
+    <div className="mx-auto w-ful max-w-6xl ">
       <SidebarProvider>
         {isParent && <AppSidebar />}
-        <main className="">
+        <main className="text-left">
           <HeaderNavBar />
           <Outlet />
         </main>

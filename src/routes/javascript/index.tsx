@@ -1,3 +1,4 @@
+import Heading from "@/components/heading";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/javascript/")({
@@ -5,5 +6,10 @@ export const Route = createFileRoute("/javascript/")({
 });
 
 function RouteComponent() {
-  return "Hello /javascript/!";
+  return (
+    <div>
+      <Heading>Javascript</Heading>
+      <p>Ahhh... Vanilla Javascript. Don't think I forgot about you!</p>
+    </div>
+  );
 }

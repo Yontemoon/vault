@@ -38,7 +38,7 @@ const HeaderNavBar = () => {
   return (
     <NavigationMenu>
       <NavigationMenuList>
-        <NavigationMenuItem className="p-2 flex justify-center align-middle">
+        <NavigationMenuItem className="p-2 flex justify-end align-middle w-full">
           <Button variant={"link"} asChild>
             <Link to={"/"} activeProps={{ className: "font-bold" }}>
               Home
