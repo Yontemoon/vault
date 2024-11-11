@@ -12,9 +12,10 @@ import Error from "../components/error";
 import useIsParent from "../hooks/use-is-parent";
 
 import styles from "@/index.css?url";
-
+import "@fontsource-variable/josefin-sans/wght-italic.css";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
+import React from "react";
 
 export const Route = createRootRoute({
   meta: () => [
@@ -32,41 +33,34 @@ export const Route = createRootRoute({
   links: () => [
     {
       rel: "stylesheet",
+      href: "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap",
+    },
+    {
+      rel: "stylesheet",
       href: styles,
     },
-    //   {
-    //     rel: "preconnect",
-    //     href: "https://fonts.googleapis.com",
-    //   },
-    //   {
-    //     ref: "preconnect",
-    //     href: "https://fonts.gstatic.com",
-    //     // ! DO I NEED THIS?
-    //     // crossOrigin,
-    //   },
-    //   {
-    //     rel: "stylesheet",
-    //     href: "https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap",
-    //   },
   ],
   component: RootComponent,
   errorComponent: Error,
-  notFoundComponent: Error,
+
+  notFoundComponent: () => {
+    return <Error />;
+  },
 });
 
 function RootComponent() {
   const isParent = useIsParent();
   return (
     <RootDocument>
-      <div className="mx-auto w-ful max-w-6xl ">
+      <div className="mx-auto w-ful max-w-6xl">
+        <HeaderNavBar />
         <SidebarProvider>
           {isParent && <AppSidebar />}
           <main className="text-left">
-            <HeaderNavBar />
             <Outlet />
           </main>
-          <TanStackRouterDevtools />
         </SidebarProvider>
+        <TanStackRouterDevtools />
       </div>
     </RootDocument>
   );
@@ -74,12 +68,12 @@ function RootComponent() {
 
 function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
   return (
-    <Html>
+    <Html lang="en">
       <Head>
         <Meta />
       </Head>
       <Body>
-        {children}
+        <React.Suspense>{children}</React.Suspense>
         <ScrollRestoration />
         <Scripts />
       </Body>
