@@ -17,17 +17,22 @@ console.log(personInfo);
 }`;
 
 const serverFunctionTest = createServerFn("GET", async () => {
-  const html = await codeToHtml(code, {
-    lang: "typescript",
-    theme: "vitesse-dark",
+  try {
+    const html = await codeToHtml(code, {
+      lang: "typescript",
+      theme: "vitesse-dark",
 
-    transformers: [
-      transformerTwoslash({
-        renderer: rendererClassic(),
-      }),
-    ],
-  });
-  return html;
+      transformers: [
+        transformerTwoslash({
+          renderer: rendererClassic(),
+        }),
+      ],
+    });
+    return html;
+  } catch (error) {
+    console.error(error);
+    return "Something went wrong";
+  }
 });
 
 export const Route = createFileRoute("/typescript/awaited")({
@@ -42,7 +47,7 @@ function RouteComponent() {
       <Heading>Awaited</Heading>
 
       <React.Suspense>
-        <div dangerouslySetInnerHTML={{ __html: highlight! }} />
+        <div dangerouslySetInnerHTML={{ __html: highlight }} />
       </React.Suspense>
     </>
   );
