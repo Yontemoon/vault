@@ -22,11 +22,11 @@ const serverFunctionTest = createServerFn("GET", async () => {
       lang: "typescript",
       theme: "vitesse-dark",
 
-      transformers: [
-        transformerTwoslash({
-          renderer: rendererClassic(),
-        }),
-      ],
+      // transformers: [
+      //   transformerTwoslash({
+      //     renderer: rendererClassic(),
+      //   }),
+      // ],
     });
     return html;
   } catch (error) {
