@@ -12,7 +12,6 @@ import Error from "../components/error";
 import useIsParent from "../hooks/use-is-parent";
 
 import styles from "@/index.css?url";
-import "@fontsource-variable/josefin-sans/wght-italic.css";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
 import React from "react";
