@@ -35,20 +35,22 @@ function AppSidebar() {
           <SidebarMenuItem>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <SidebarMenuButton>
+                <SidebarMenuButton className="uppercase">
                   {urlToTitle(getParentUrl(location.pathname))}
                   <ChevronDown className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
               <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-                <DropdownMenuLabel>Section</DropdownMenuLabel>
+                <DropdownMenuLabel className="uppercase">
+                  Section
+                </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 {NAVIGATION_LINKS.map((navLink, i) => {
                   if (navLink.href === "/") return;
                   return (
                     <DropdownMenuItem key={i} asChild>
                       <Link href={navLink.href}>
-                        <span>{navLink.name}</span>
+                        <span className="uppercase">{navLink.name}</span>
                       </Link>
                     </DropdownMenuItem>
                   );
@@ -74,7 +76,7 @@ function AppSidebar() {
                         to={value.fullPath}
                         activeProps={{ className: "font-bold" }}
                       >
-                        <span>{titleArr.join("")}</span>
+                        <span className="uppercase">{titleArr.join("")}</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
