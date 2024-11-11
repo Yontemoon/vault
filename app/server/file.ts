@@ -8,6 +8,7 @@ const dirname = path.dirname(__filename);
 
 const getFile = createServerFn("GET", async (pathUrl: string) => {
   try {
+    console.log("DIRNAME", dirname);
     const filePath = path.resolve(dirname, `../vaults${pathUrl}`);
     console.log(filePath);
     const data = await fs.readFile(filePath, "utf-8");
