@@ -4,7 +4,9 @@ import Heading from "@/components/heading";
 import { codeToHtml } from "shiki";
 
 import { createServerFn } from "@tanstack/start";
-import { transformerTwoslash, rendererClassic } from "@shikijs/twoslash";
+
+// TODO - Come back to this... in production causes errors.
+// import { transformerTwoslash, rendererClassic } from "@shikijs/twoslash";
 
 const code = `async function doSomething() {
 return {
@@ -21,12 +23,6 @@ const serverFunctionTest = createServerFn("GET", async () => {
     const html = await codeToHtml(code, {
       lang: "typescript",
       theme: "vitesse-dark",
-
-      // transformers: [
-      //   transformerTwoslash({
-      //     renderer: rendererClassic(),
-      //   }),
-      // ],
     });
     return html;
   } catch (error) {
