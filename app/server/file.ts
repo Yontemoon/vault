@@ -1,16 +1,10 @@
 import { createServerFn } from "@tanstack/start";
 import fs from "fs/promises";
 import path from "path";
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const dirname = path.dirname(__filename);
 
 const getFile = createServerFn("GET", async (pathUrl: string) => {
   try {
-    console.log("DIRNAME", dirname);
-    const filePath = path.resolve(dirname, `../vaults${pathUrl}`);
-    console.log(filePath);
+    const filePath = path.join(process.cwd(), `app/vaults${pathUrl}`);
     const data = await fs.readFile(filePath, "utf-8");
     return data;
   } catch (err) {
