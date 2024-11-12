@@ -8,13 +8,7 @@ export default defineConfig({
         projects: ["./tsconfig.json"],
       }),
     ],
-    // build: {
-    //   rollupOptions: {
-
-    //   }
-    // }
   },
-
   server: {
     preset: "vercel",
   },
