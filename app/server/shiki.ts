@@ -10,7 +10,7 @@ const getShiki = createServerFn("GET", async (codeStr: string) => {
     // const url = path.join(process.cwd(), `/app/vaults${codeStr}`);
 
     const content = fs.readFileSync(
-      path.join(process.cwd(), "app", "vaults", "ts", "awaited.ts"),
+      path.join(process.cwd(), "public", "vaults", "ts", "awaited.ts"),
       "utf-8"
     );
     // const content = await fs.readFile(url, "utf8");
