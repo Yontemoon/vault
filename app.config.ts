@@ -9,6 +9,11 @@ export default defineConfig({
       }),
     ],
   },
+  // routers: {
+  //   ssr: {
+  //     entry:
+  //   }
+  // },
   server: {
     preset: "vercel",
   },
