@@ -1,9 +1,11 @@
 import { createServerFn } from "@tanstack/start";
 import { codeToHtml } from "shiki";
+import fs from "fs/promises";
 
 const getShiki = createServerFn("GET", async (codeStr: string) => {
   try {
-    const html = await codeToHtml(codeStr, {
+    const content = await fs.readFile(`./app/vaults${codeStr}`, "utf8");
+    const html = await codeToHtml(content, {
       lang: "typescript",
       theme: "vitesse-dark",
     });

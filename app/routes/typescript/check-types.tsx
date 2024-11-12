@@ -2,11 +2,11 @@ import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import Heading from "@/components/heading";
 import Shiki from "@/components/shiki";
-import { createShiki } from "@/lib/server";
+import { getShiki } from "@/server/shiki";
 
 export const Route = createFileRoute("/typescript/check-types")({
   component: RouteComponent,
-  loader: async () => createShiki("/ts/checkTypes.ts"),
+  loader: async () => getShiki("/ts/checkTypes.ts"),
 });
 
 function RouteComponent() {
