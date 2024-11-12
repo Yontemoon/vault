@@ -8,7 +8,10 @@ export default defineConfig({
         projects: ["./tsconfig.json"],
       }),
     ],
-    assetsInclude: ["**/app/vaults/ts/*.ts"],
+    // assetsInclude: ["*/app/vaults/ts/*.ts"],
+    // build: {
+    //   rollupOptions: {},
+    // },
   },
 
   server: {
