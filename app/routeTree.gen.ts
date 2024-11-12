@@ -29,6 +29,7 @@ import { Route as TypescriptAwaitedImport } from './routes/typescript/awaited'
 import { Route as ReactUseRefImport } from './routes/react/use-ref'
 import { Route as ReactGenericComponentsImport } from './routes/react/generic-components'
 import { Route as ReactElementPropsImport } from './routes/react/element-props'
+import { Route as JavascriptTestingImport } from './routes/javascript/testing'
 
 // Create/Update Routes
 
@@ -142,6 +143,12 @@ const ReactElementPropsRoute = ReactElementPropsImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const JavascriptTestingRoute = JavascriptTestingImport.update({
+  id: '/javascript/testing',
+  path: '/javascript/testing',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -151,6 +158,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/javascript/testing': {
+      id: '/javascript/testing'
+      path: '/javascript/testing'
+      fullPath: '/javascript/testing'
+      preLoaderRoute: typeof JavascriptTestingImport
       parentRoute: typeof rootRoute
     }
     '/react/element-props': {
@@ -279,6 +293,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/javascript/testing': typeof JavascriptTestingRoute
   '/react/element-props': typeof ReactElementPropsRoute
   '/react/generic-components': typeof ReactGenericComponentsRoute
   '/react/use-ref': typeof ReactUseRefRoute
@@ -300,6 +315,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/javascript/testing': typeof JavascriptTestingRoute
   '/react/element-props': typeof ReactElementPropsRoute
   '/react/generic-components': typeof ReactGenericComponentsRoute
   '/react/use-ref': typeof ReactUseRefRoute
@@ -322,6 +338,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/javascript/testing': typeof JavascriptTestingRoute
   '/react/element-props': typeof ReactElementPropsRoute
   '/react/generic-components': typeof ReactGenericComponentsRoute
   '/react/use-ref': typeof ReactUseRefRoute
@@ -345,6 +362,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/javascript/testing'
     | '/react/element-props'
     | '/react/generic-components'
     | '/react/use-ref'
@@ -365,6 +383,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/javascript/testing'
     | '/react/element-props'
     | '/react/generic-components'
     | '/react/use-ref'
@@ -385,6 +404,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/javascript/testing'
     | '/react/element-props'
     | '/react/generic-components'
     | '/react/use-ref'
@@ -407,6 +427,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  JavascriptTestingRoute: typeof JavascriptTestingRoute
   ReactElementPropsRoute: typeof ReactElementPropsRoute
   ReactGenericComponentsRoute: typeof ReactGenericComponentsRoute
   ReactUseRefRoute: typeof ReactUseRefRoute
@@ -428,6 +449,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  JavascriptTestingRoute: JavascriptTestingRoute,
   ReactElementPropsRoute: ReactElementPropsRoute,
   ReactGenericComponentsRoute: ReactGenericComponentsRoute,
   ReactUseRefRoute: ReactUseRefRoute,
@@ -458,6 +480,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/javascript/testing",
         "/react/element-props",
         "/react/generic-components",
         "/react/use-ref",
@@ -479,6 +502,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/javascript/testing": {
+      "filePath": "javascript/testing.tsx"
     },
     "/react/element-props": {
       "filePath": "react/element-props.tsx"

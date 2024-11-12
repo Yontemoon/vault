@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/start";
 import { codeToHtml } from "shiki";
+import { createHighlighterCore } from "shiki/core";
 import path from "path";
 import fs from "fs/promises";
 import { awaited, checkTypes, constReadOnly } from "@/vaults";

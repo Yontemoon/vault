@@ -39,6 +39,7 @@ export const Route = createRootRoute({
       href: styles,
     },
   ],
+
   component: RootComponent,
   errorComponent: Error,
 
