@@ -37,6 +37,7 @@ const getShiki = createServerFn("GET", async (codeStr: string) => {
     // const content = await fs.readFile(`./app/vaults${codeStr}`, "utf8");
     // const url = path.join(process.cwd(), `/app/vaults${codeStr}`);
     // console.log("Current working directory:", process.cwd());
+<<<<<<< HEAD
     let dataPath = "";
 
     if (import.meta.env.PROD) {
@@ -44,6 +45,10 @@ const getShiki = createServerFn("GET", async (codeStr: string) => {
     } else {
       dataPath = path.resolve(process.cwd(), "public", "awaited.ts");
     }
+=======
+    // testing mac
+    const dataPath = path.resolve(process.cwd(), "public", "awaited.ts");
+>>>>>>> d745ab966dbe282b41978f5191dc1438df4126f0
     console.log(dataPath);
 
     const content = fs.readFileSync(dataPath, "utf-8");
