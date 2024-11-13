@@ -7,6 +7,14 @@ export default defineConfig({
       tsConfigPaths({
         projects: ["./tsconfig.json"],
       }),
+      {
+        name: "markdown-loader",
+        transform(code, id) {
+          if (id.slice(-3) === ".md") {
+            return `export default ${JSON.stringify(code)}`;
+          }
+        },
+      },
     ],
   },
 
