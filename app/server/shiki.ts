@@ -1,9 +1,24 @@
 import { createServerFn } from "@tanstack/start";
-import { codeToHtml } from "shiki";
-import { createHighlighterCore } from "shiki/core";
+// import { codeToHtml } from "shiki";
+// import { createHighlighterCore } from "shiki/core";
 import path from "path";
-import fs from "fs/promises";
+import fs from "fs";
 import { awaited, checkTypes, constReadOnly } from "@/vaults";
+
+import {
+  // BundledLanguage,
+  // BundledTheme,
+  // codeToHtml,
+  createHighlighter,
+} from "shiki/bundle/web";
+
+const getHighlighter = async () => {
+  const highlighter = await createHighlighter({
+    langs: ["html", "css", "js", "ts"],
+    themes: ["vitesse-dark"],
+  });
+  return highlighter;
+};
 
 // const loadFile = async (fileName: string) => {
 //   try {
@@ -19,22 +34,22 @@ console.log(awaited, checkTypes, constReadOnly);
 
 const getShiki = createServerFn("GET", async (codeStr: string) => {
   try {
-    const content = await fs.readFile(`./app/vaults${codeStr}`, "utf8");
+    // const content = await fs.readFile(`./app/vaults${codeStr}`, "utf8");
     // const url = path.join(process.cwd(), `/app/vaults${codeStr}`);
     // console.log("Current working directory:", process.cwd());
-    // const dataPath = path.resolve(
-    //   process.cwd(),
-    //   "app",
-    //   "vaults",
-    //   "ts",
-    //   "awaited.ts"
-    // );
+    const dataPath = path.resolve(
+      process.cwd(),
+      "app",
+      "vaults",
+      "ts",
+      "awaited.ts"
+    );
 
-    // const content = fs.readFileSync(dataPath, "utf-8");
+    const content = fs.readFileSync(dataPath, "utf-8");
     // const content = await fs.readFile(url, "utf8");
-
-    const html = await codeToHtml(content, {
-      lang: "typescript",
+    const highligher = await getHighlighter();
+    const html = highligher.codeToHtml(content, {
+      lang: "ts",
       theme: "vitesse-dark",
     });
     return html;
