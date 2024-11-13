@@ -33,6 +33,7 @@ const getHighlighter = async () => {
 console.log(awaited, checkTypes, constReadOnly);
 
 const getShiki = createServerFn("GET", async (codeStr: string) => {
+  "use server";
   try {
     // const content = await fs.readFile(`./app/vaults${codeStr}`, "utf8");
     // const url = path.join(process.cwd(), `/app/vaults${codeStr}`);
@@ -41,7 +42,7 @@ const getShiki = createServerFn("GET", async (codeStr: string) => {
     let dataPath = "";
 
     if (import.meta.env.PROD) {
-      dataPath = "awaited.ts";
+      dataPath = "/awaited.ts";
     } else {
       dataPath = path.resolve(process.cwd(), "public", "awaited.ts");
     }
