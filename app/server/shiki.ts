@@ -37,7 +37,13 @@ const getShiki = createServerFn("GET", async (codeStr: string) => {
     // const content = await fs.readFile(`./app/vaults${codeStr}`, "utf8");
     // const url = path.join(process.cwd(), `/app/vaults${codeStr}`);
     // console.log("Current working directory:", process.cwd());
-    const dataPath = path.resolve(process.cwd(), "public", "awaited.ts");
+    let dataPath = "";
+
+    if (import.meta.env.PROD) {
+      dataPath = path.resolve(process.cwd(), "output", "static", "awaited.ts");
+    } else {
+      dataPath = path.resolve(process.cwd(), "public", "awaited.ts");
+    }
     console.log(dataPath);
 
     const content = fs.readFileSync(dataPath, "utf-8");
