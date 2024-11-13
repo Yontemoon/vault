@@ -41,7 +41,7 @@ const getShiki = createServerFn("GET", async (codeStr: string) => {
     let dataPath = "";
 
     if (import.meta.env.PROD) {
-      dataPath = path.resolve("output", "static", "awaited.ts");
+      dataPath = path.resolve("awaited.ts");
     } else {
       dataPath = path.resolve(process.cwd(), "public", "awaited.ts");
     }
