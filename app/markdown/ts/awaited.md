@@ -4,6 +4,8 @@
 
 This is a paragraph element.
 
+---
+
 ```ts
 /**
  * ? November 2nd, 2024

@@ -1,7 +1,7 @@
 import Markdown from "react-markdown";
 import Heading from "./heading";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { tomorrow } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import { xonokai } from "react-syntax-highlighter/dist/cjs/styles/prism";
 // import { CodeProps } from "react-markdown/lib/ast-to-react";
 type PropTypes = {
   content: string;
@@ -12,6 +12,7 @@ const MarkdownComp = ({ content }: PropTypes) => {
   return (
     <article className="m-5">
       <Markdown
+        unwrapDisallowed={true}
         components={{
           h1: ({ node, children, ...props }) => (
             <Heading as="h1" size="xl">
@@ -28,19 +29,21 @@ const MarkdownComp = ({ content }: PropTypes) => {
               {children}
             </Heading>
           ),
+          hr: () => {
+            return <div className="h-3 border-2 border-black my-2" />;
+          },
 
           p: ({ node, children, ...props }) => (
-            <p className="text-xl">{children}</p>
+            <p className="text-lg">{children}</p>
           ),
           code: ({ className, children, style, ref, ...props }) => {
             const match = /language-(\w+)/.exec(className || "");
-            console.log(match);
             return match ? (
               <SyntaxHighlighter
                 language={match[1]}
                 PreTag="div"
+                style={xonokai}
                 {...props}
-                style={tomorrow}
               >
                 {String(children).replace(/\n$/, "")}
               </SyntaxHighlighter>
