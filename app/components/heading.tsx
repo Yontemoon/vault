@@ -20,7 +20,7 @@ const Heading = ({
         "font-display font-bold leading-tight tracking-tight ",
         size === "xl" && "text-4xl md:text-5xl",
         size === "lg" && "text-3xl md:text-4xl",
-        size === "md" && "text-2xl md:text-3xl",
+        size === "md" && "text-2xl md:text-2xl",
         size === "sm" && "text-1xl md:text-2xl",
         className
       )}

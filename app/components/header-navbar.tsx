@@ -18,7 +18,7 @@ const HeaderNavBar = () => {
 
   if (location.pathname === "/") {
     return (
-      <NavigationMenu className="w-full flex justify-center">
+      <NavigationMenu className="w-full flex justify-center min-h-20">
         <NavigationMenuList>
           {location.pathname !== "/" && <SidebarTrigger />}
           <NavigationMenuItem className="p-2 flex justify-center align-middle">
@@ -36,7 +36,7 @@ const HeaderNavBar = () => {
   }
 
   return (
-    <NavigationMenu>
+    <NavigationMenu className="w-full min-h-20 flex justify-center items-center">
       <NavigationMenuList>
         <NavigationMenuItem className="p-2 flex justify-end align-middle w-full">
           <Button variant={"link"} asChild className="text-lg">

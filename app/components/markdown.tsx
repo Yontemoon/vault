@@ -2,7 +2,9 @@ import Markdown from "react-markdown";
 import Heading from "./heading";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { xonokai } from "react-syntax-highlighter/dist/cjs/styles/prism";
-// import { CodeProps } from "react-markdown/lib/ast-to-react";
+import { Separator } from "@/components/ui/separator";
+import { Link } from "@tanstack/react-router";
+
 type PropTypes = {
   content: string;
 };
@@ -10,31 +12,33 @@ type PropTypes = {
 const MarkdownComp = ({ content }: PropTypes) => {
   console.log(content);
   return (
-    <article className="m-5">
+    <article className="mx-5">
       <Markdown
         unwrapDisallowed={true}
         components={{
-          h1: ({ node, children, ...props }) => (
-            <Heading as="h1" size="xl">
+          h1: ({ children }) => (
+            <Heading as="h1" size="xl" className="mb-5">
               {children}
             </Heading>
           ),
-          h2: ({ node, children, ...props }) => (
-            <Heading as="h2" size="lg">
+          h2: ({ children }) => (
+            <Heading as="h2" size="lg" className="my-5">
               {children}
             </Heading>
           ),
-          h3: ({ node, children, ...props }) => (
-            <Heading as="h3" size="md">
+          h3: ({ children }) => (
+            <Heading as="h3" size="md" className="mb-3">
               {children}
             </Heading>
           ),
           hr: () => {
-            return <div className="h-3 border-2 border-black my-2" />;
+            return <Separator className="my-4" />;
           },
-
-          p: ({ node, children, ...props }) => (
-            <p className="text-lg">{children}</p>
+          a: ({ children }) => {
+            return <Link to="/">{children}</Link>;
+          },
+          p: ({ children }) => (
+            <p className="text-lg scroll-m-12 mb-5">{children}</p>
           ),
           code: ({ className, children, style, ref, ...props }) => {
             const match = /language-(\w+)/.exec(className || "");
