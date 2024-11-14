@@ -1,10 +1,4 @@
 import { createServerFn } from "@tanstack/start";
-// import { codeToHtml } from "shiki";
-// import { createHighlighterCore } from "shiki/core";
-import path from "path";
-import fs from "fs";
-import { awaited, checkTypes, constReadOnly } from "@/vaults";
-// import awaitedMd from "@/vaults/ts/awaited.md";
 
 import {
   // BundledLanguage,
@@ -20,18 +14,6 @@ const getHighlighter = async () => {
   });
   return highlighter;
 };
-
-// const loadFile = async (fileName: string) => {
-//   try {
-//     const module = await import(`./app/vaults/ts/${fileName}`);
-//     return module;
-//   } catch (error) {
-//     console.error("Error loading file:", error);
-//   }
-// };
-// loadFile("awaited.ts");
-
-console.log(awaited, checkTypes, constReadOnly);
 
 const getShiki = createServerFn("GET", async (codeStr: string) => {
   "use server";
