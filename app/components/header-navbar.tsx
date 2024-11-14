@@ -12,6 +12,7 @@ import { Button } from "./ui/button";
 import { Link, useLocation } from "@tanstack/react-router";
 import { NAVIGATION_LINKS } from "@/lib/constants";
 import { SidebarTrigger } from "./ui/sidebar";
+import ThemeToggle from "./theme-toggle";
 
 const HeaderNavBar = () => {
   const location = useLocation();
@@ -44,6 +45,7 @@ const HeaderNavBar = () => {
               Home
             </Link>
           </Button>
+          <ThemeToggle />
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>

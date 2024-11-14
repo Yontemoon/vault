@@ -4,18 +4,17 @@ import {
   ScrollRestoration,
 } from "@tanstack/react-router";
 import { TanStackRouterDevtools } from "@tanstack/router-devtools";
-
 import HeaderNavBar from "../components/header-navbar";
 import { SidebarProvider } from "../components/ui/sidebar";
 import AppSidebar from "../components/app-sidebar";
 import Error from "../components/error";
 import useIsParent from "../hooks/use-is-parent";
 import Footer from "@/components/footer";
-
 import styles from "@/index.css?url";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
 import React from "react";
+import { ThemeProvider } from "@/context/theme-provider";
 
 export const Route = createRootRoute({
   meta: () => [
@@ -65,17 +64,19 @@ function RootComponent() {
   const isParent = useIsParent();
   return (
     <RootDocument>
-      <div className="mx-auto w-ful max-w-6xl">
-        <HeaderNavBar />
-        <SidebarProvider>
-          {isParent && <AppSidebar />}
-          <main className="text-left">
-            <Outlet />
-          </main>
-        </SidebarProvider>
-        <Footer />
-        {import.meta.env.DEV && <TanStackRouterDevtools />}
-      </div>
+      <ThemeProvider>
+        <div className="mx-auto w-ful max-w-6xl">
+          <HeaderNavBar />
+          <SidebarProvider>
+            {isParent && <AppSidebar />}
+            <main className="text-left">
+              <Outlet />
+            </main>
+          </SidebarProvider>
+          <Footer />
+          {import.meta.env.DEV && <TanStackRouterDevtools />}
+        </div>
+      </ThemeProvider>
     </RootDocument>
   );
 }
