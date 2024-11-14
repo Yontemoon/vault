@@ -1,10 +1,11 @@
-import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import generics from "@/markdown/ts/generics.md";
+import MarkdownComp from "@/components/markdown";
 
 export const Route = createFileRoute("/typescript/generics")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return "Hello /typescript/generics!";
+  return <MarkdownComp content={generics} />;
 }

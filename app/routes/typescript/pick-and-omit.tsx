@@ -1,10 +1,11 @@
-import * as React from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, pick } from "@tanstack/react-router";
+import pickAndOmit from "@/markdown/ts/pickAndOmit.md";
+import MarkdownComp from "@/components/markdown";
 
 export const Route = createFileRoute("/typescript/pick-and-omit")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return "Hello /typescript/pick-and-omit!";
+  return <MarkdownComp content={pickAndOmit} />;
 }

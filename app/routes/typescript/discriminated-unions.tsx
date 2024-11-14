@@ -1,10 +1,11 @@
-import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import MarkdownComp from "@/components/markdown";
+import discriminatedUnions from "@/markdown/ts/discriminatedUnions.md";
 
 export const Route = createFileRoute("/typescript/discriminated-unions")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return "Hello /typescript/discriminated-unions!";
+  return <MarkdownComp content={discriminatedUnions} />;
 }

@@ -1,10 +1,11 @@
-import * as React from "react";
 import { createFileRoute } from "@tanstack/react-router";
+import record from "@/markdown/ts/record.md";
+import MarkdownComp from "@/components/markdown";
 
 export const Route = createFileRoute("/typescript/record")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  return "Hello /typescript/record!";
+  return <MarkdownComp content={record} />;
 }
