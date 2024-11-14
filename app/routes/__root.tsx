@@ -74,7 +74,7 @@ function RootComponent() {
           </main>
         </SidebarProvider>
         <Footer />
-        <TanStackRouterDevtools />
+        {import.meta.env.DEV && <TanStackRouterDevtools />}
       </div>
     </RootDocument>
   );
