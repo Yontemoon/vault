@@ -10,6 +10,7 @@ import { SidebarProvider } from "../components/ui/sidebar";
 import AppSidebar from "../components/app-sidebar";
 import Error from "../components/error";
 import useIsParent from "../hooks/use-is-parent";
+import Footer from "@/components/footer";
 
 import styles from "@/index.css?url";
 import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
@@ -60,6 +61,7 @@ function RootComponent() {
             <Outlet />
           </main>
         </SidebarProvider>
+        <Footer />
         <TanStackRouterDevtools />
       </div>
     </RootDocument>

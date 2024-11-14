@@ -4,29 +4,25 @@
 
 This is a paragraph element.
 
-```tsx
-import * as React from "react";
-import { createFileRoute } from "@tanstack/react-router";
-import Heading from "@/components/heading";
-import Shiki from "@/components/shiki";
-// import { getTesting } from "@/server/testing";
-import { getShiki } from "@/server/shiki";
+```ts
+/**
+ * ? November 2nd, 2024
+ *
+ * * Removes the promise from any promise type.
+ * * From what I can see for use cases, great for helper functions that are
+ * * used in async functions
+ */
 
-// TODO - Come back to this... in production causes errors.
-// import { transformerTwoslash, rendererClassic } from "@shikijs/twoslash";
+async function doSomething() {
+  // Does something like await fetch(url)
+  return {
+    name: "Monte",
+    age: 26,
+  };
+}
 
-export const Route = createFileRoute("/typescript/awaited")({
-  component: RouteComponent,
-  loader: async () => getShiki("testing123"),
-});
-
-function RouteComponent() {
-  const highlight = Route.useLoaderData();
-  return (
-    <>
-      <Heading>Awaited</Heading>
-      <Shiki stringContent={highlight} />
-    </>
-  );
+// Awaited removes the promise
+function useSomething(personInfo: Awaited<ReturnType<typeof doSomething>>) {
+  console.log(personInfo);
 }
 ```

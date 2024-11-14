@@ -33,46 +33,19 @@ const getHighlighter = async () => {
 
 console.log(awaited, checkTypes, constReadOnly);
 
-// const getShiki = createServerFn("GET", async (codeStr: string) => {
-//   "use server";
-//   try {
-//     // const content = await fs.readFile(`./app/vaults${codeStr}`, "utf8");
-//     // const url = path.join(process.cwd(), `/app/vaults${codeStr}`);
-//     // console.log("Current working directory:", process.cwd());
-
-//     let dataPath = "";
-
-//     if (import.meta.env.PROD) {
-//       dataPath = "/awaited.ts";
-//     } else {
-//       dataPath = path.resolve(process.cwd(), "public", "awaited.ts");
-//     }
-
-//     console.log(dataPath);
-
-//     const content = fs.readFileSync(dataPath, "utf-8");
-//     console.log(content);
-//     // const content = await fs.readFile(url, "utf8");
-//     const highligher = await getHighlighter();
-//     const html = highligher.codeToHtml(content, {
-//       lang: "ts",
-//       theme: "vitesse-dark",
-//     });
-//     return html;
-//   } catch (error) {
-//     console.error(error);
-//     return "Something went wrong";
-//   }
-// });
-
-const getShiki = createServerFn("GET", async (urlPath: string) => {
-  const markdown = "awaited-test.md";
+const getShiki = createServerFn("GET", async (codeStr: string) => {
+  "use server";
   try {
-    import(`@/markdown/${markdown}`).then(async (res) => {
-      console.log(res);
-      const data = await fetch(res.default);
-      return data.text();
+    // const content = await fs.readFile(`./app/vaults${codeStr}`, "utf8");
+    // const url = path.join(process.cwd(), `/app/vaults${codeStr}`);
+    // console.log("Current working directory:", process.cwd());
+    // const content = await fs.readFile(url, "utf8");
+    const highligher = await getHighlighter();
+    const html = highligher.codeToHtml(codeStr, {
+      lang: "ts",
+      theme: "vitesse-dark",
     });
+    return html;
   } catch (error) {
     console.error(error);
     return "Something went wrong";
