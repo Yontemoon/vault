@@ -15,6 +15,7 @@ import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
 import React from "react";
 import { ThemeProvider } from "@/context/theme-provider";
+import ThemeToggle from "@/components/theme-toggle";
 
 export const Route = createRootRoute({
   meta: () => [
@@ -69,10 +70,11 @@ function RootComponent() {
           <HeaderNavBar />
           <SidebarProvider>
             {isParent && <AppSidebar />}
-            <main className="text-left">
+            <main className="w-full">
               <Outlet />
             </main>
           </SidebarProvider>
+          {/* <ThemeToggle /> */}
           <Footer />
           {import.meta.env.DEV && <TanStackRouterDevtools />}
         </div>

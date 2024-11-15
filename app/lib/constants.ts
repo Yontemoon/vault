@@ -24,6 +24,11 @@ const NAVIGATION_LINKS = [
     href: "/css",
     slug: "css",
   },
+  {
+    name: "HTML",
+    href: "/html",
+    slug: "html",
+  },
 ] as const;
 
 export { NAVIGATION_LINKS };

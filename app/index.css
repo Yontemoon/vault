@@ -5,6 +5,11 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
+    --background-react: 191 66% 62%;
+    --background-js: 52 100% 39%;
+    --background-ts: 211 60% 48%;
+    --background-css: 168 47% 50%;
+    --background-html: 12 73% 51%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -40,6 +45,11 @@
   }
   .dark {
     --background: 222.2 84% 4.9%;
+    --background-react: 194 91% 27%;
+    --background-js: 52 100% 39%;
+    --background-ts: 211 60% 48%;
+    --background-css: 168 47% 50%;
+    --background-html: 12 73% 51%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;

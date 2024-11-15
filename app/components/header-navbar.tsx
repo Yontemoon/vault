@@ -30,6 +30,7 @@ const HeaderNavBar = () => {
                 </Link>
               </Button>
             ))}
+            <ThemeToggle />
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
