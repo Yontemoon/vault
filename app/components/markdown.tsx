@@ -47,12 +47,13 @@ const MarkdownComp = ({ content }: PropTypes) => {
                 language={match[1]}
                 PreTag="div"
                 style={xonokai}
+                className="my-5"
                 {...props}
               >
                 {String(children).replace(/\n$/, "")}
               </SyntaxHighlighter>
             ) : (
-              <code className="bg-gray-100 text-red-500 px-1 py-0.5 rounded">
+              <code className="bg-gray-100 text-red-500 px-1 py-0.5 rounded ">
                 {children}
               </code>
             );

@@ -1,6 +1,7 @@
 import Heading from "@/components/heading";
 import { cn } from "@/lib/utils";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { NAVIGATION_LINKS } from "@/lib/constants";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -32,22 +33,26 @@ function Index() {
 type CardType = {
   children: React.ReactNode;
   language: "ts" | "js" | "react" | "html" | "css";
-};
+} & React.ComponentProps<"button">;
 
-const Card = ({ children, language }: CardType) => {
+const Card = ({ children, language, ...props }: CardType) => {
+  const currentLang = NAVIGATION_LINKS.find((n) => n.abbreviation === language);
   return (
-    <button
-      className={cn(
-        "text-lg min-h-16 m-auto border shadow-xl w-full rounded-md flex justify-center items-center  hover:cursor-pointer transition-all",
-        language === "ts" && "bg-backgroundTs hover:bg-backgroundTs/90",
-        language === "js" && "bg-backgroundJs hover:bg-backgroundJs/90",
-        language === "react" &&
-          "bg-backgroundReact hover:bg-backgroundReact/90",
-        language === "css" && "bg-backgroundCss hover:bg-backgroundCss/90",
-        language === "html" && "bg-backgroundHtml hover:bg-backgroundHtml/90"
-      )}
-    >
-      {children}
-    </button>
+    <Link to={currentLang?.href}>
+      <button
+        className={cn(
+          "text-lg min-h-16 m-auto border shadow-xl w-full rounded-md flex justify-center items-center  hover:cursor-pointer transition-all",
+          language === "ts" && "bg-backgroundTs hover:bg-backgroundTs/90",
+          language === "js" && "bg-backgroundJs hover:bg-backgroundJs/90",
+          language === "react" &&
+            "bg-backgroundReact hover:bg-backgroundReact/90",
+          language === "css" && "bg-backgroundCss hover:bg-backgroundCss/90",
+          language === "html" && "bg-backgroundHtml hover:bg-backgroundHtml/90"
+        )}
+        {...props}
+      >
+        {children}
+      </button>
+    </Link>
   );
 };
