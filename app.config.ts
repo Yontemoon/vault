@@ -1,3 +1,4 @@
+import viteServer from "#vite-dev-server";
 import { defineConfig } from "@tanstack/start/config";
 import tsConfigPaths from "vite-tsconfig-paths";
 
