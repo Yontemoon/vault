@@ -4,6 +4,11 @@ import elementProps from "@/markdown/react/element-props.md";
 import MarkdownComp from "@/components/markdown";
 
 export const Route = createFileRoute("/react/element-props")({
+  meta: () => [
+    {
+      title: "Monte's Vault - Element Props",
+    },
+  ],
   component: RouteComponent,
 });
 

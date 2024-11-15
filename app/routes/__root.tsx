@@ -15,7 +15,6 @@ import { Body, Head, Html, Meta, Scripts } from "@tanstack/start";
 import type { ReactNode } from "react";
 import React from "react";
 import { ThemeProvider } from "@/context/theme-provider";
-import ThemeToggle from "@/components/theme-toggle";
 
 export const Route = createRootRoute({
   meta: () => [
@@ -66,8 +65,8 @@ function RootComponent() {
   return (
     <RootDocument>
       <ThemeProvider>
+        <HeaderNavBar />
         <div className="mx-auto w-ful max-w-6xl">
-          <HeaderNavBar />
           <SidebarProvider>
             {isParent && <AppSidebar />}
             <main className="w-full">
@@ -75,9 +74,9 @@ function RootComponent() {
             </main>
           </SidebarProvider>
           {/* <ThemeToggle /> */}
-          <Footer />
           {import.meta.env.DEV && <TanStackRouterDevtools />}
         </div>
+        <Footer />
       </ThemeProvider>
     </RootDocument>
   );

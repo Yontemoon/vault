@@ -19,7 +19,7 @@ const HeaderNavBar = () => {
 
   if (location.pathname === "/") {
     return (
-      <NavigationMenu className="w-full flex justify-center min-h-20">
+      <NavigationMenu className="w-full flex justify-center min-h-20 border-b-2 border-solid border-foreground mb-5">
         <NavigationMenuList>
           {location.pathname !== "/" && <SidebarTrigger />}
           <NavigationMenuItem className="p-2 flex justify-center align-middle">
@@ -38,16 +38,14 @@ const HeaderNavBar = () => {
   }
 
   return (
-    <NavigationMenu className="w-full min-h-20 flex justify-center items-center">
-      <NavigationMenuList>
-        <NavigationMenuItem className="p-2 flex justify-end align-middle w-full">
-          <Button variant={"link"} asChild className="text-lg">
-            <Link to={"/"} activeProps={{ className: "font-bold" }}>
-              Home
-            </Link>
-          </Button>
-          <ThemeToggle />
-        </NavigationMenuItem>
+    <NavigationMenu className="w-full min-h-20 border-b-2 border-solid border-foreground mb-5">
+      <NavigationMenuList className="flex justify-between mx-5">
+        <Button variant={"link"} asChild className="text-lg">
+          <Link to={"/"} activeProps={{ className: "font-bold" }}>
+            Monte's Vault
+          </Link>
+        </Button>
+        <ThemeToggle />
       </NavigationMenuList>
     </NavigationMenu>
   );

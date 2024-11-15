@@ -53,7 +53,7 @@ const MarkdownComp = ({ content }: PropTypes) => {
                 {String(children).replace(/\n$/, "")}
               </SyntaxHighlighter>
             ) : (
-              <code className="bg-gray-100 text-red-500 px-1 py-0.5 rounded ">
+              <code className="bg-backgroundReact text-foreground px-2 py-[2px] rounded text-center">
                 {children}
               </code>
             );
