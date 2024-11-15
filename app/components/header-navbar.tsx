@@ -39,14 +39,14 @@ const HeaderNavBar = () => {
 
   return (
     <NavigationMenu className="w-full min-h-20 border-b-2 border-solid border-foreground mb-5">
-      <NavigationMenuList className="flex justify-between mx-5">
+      <div className="flex justify-between mx-5 w-full">
         <Button variant={"link"} asChild className="text-lg">
           <Link to={"/"} activeProps={{ className: "font-bold" }}>
             Monte's Vault
           </Link>
         </Button>
         <ThemeToggle />
-      </NavigationMenuList>
+      </div>
     </NavigationMenu>
   );
 };

@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { NAVIGATION_LINKS } from "./constants";
 
 function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -26,4 +27,23 @@ function getParentUrl(url: string): string {
   return "/" + urlArr[1];
 }
 
-export { cn, urlToTitle, getParentUrl };
+function backgroundLangStyle(
+  currentLang: (typeof NAVIGATION_LINKS)[number]["abbreviation"]
+) {
+  switch (currentLang) {
+    case "js":
+      return "bg-backgroundJs";
+    case "react":
+      return "bg-backgroundReact";
+    case "ts":
+      return "bg-backgroundTs";
+    case "css":
+      return "bg-backgroundCss";
+    case "html":
+      return "bg-backgroundHtml";
+    default:
+      return "bg-background";
+  }
+}
+
+export { cn, urlToTitle, getParentUrl, backgroundLangStyle };

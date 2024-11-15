@@ -1,16 +1,26 @@
+import React from "react";
 import Markdown from "react-markdown";
 import Heading from "./heading";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { xonokai } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { Separator } from "@/components/ui/separator";
-import { Link } from "@tanstack/react-router";
+import { Link, useLocation } from "@tanstack/react-router";
+import { cn, getParentUrl } from "@/lib/utils";
+import { NAVIGATION_LINKS } from "@/lib/constants";
+import { backgroundLangStyle } from "@/lib/utils";
 
 type PropTypes = {
   content: string;
 };
 
 const MarkdownComp = ({ content }: PropTypes) => {
-  console.log(content);
+  const location = useLocation();
+  const currentNav = React.useMemo(() => {
+    const parent = getParentUrl(location.pathname);
+    const current = NAVIGATION_LINKS.find((n) => n.href === parent);
+    return current?.abbreviation || "js";
+  }, [location]);
+  console.log(currentNav);
   return (
     <article className="mx-5">
       <Markdown
@@ -32,7 +42,11 @@ const MarkdownComp = ({ content }: PropTypes) => {
             </Heading>
           ),
           hr: () => {
-            return <Separator className="my-4" />;
+            return (
+              <Separator
+                className={cn("my-4", backgroundLangStyle(currentNav))}
+              />
+            );
           },
           a: ({ children }) => {
             return <Link to="/">{children}</Link>;
@@ -53,7 +67,12 @@ const MarkdownComp = ({ content }: PropTypes) => {
                 {String(children).replace(/\n$/, "")}
               </SyntaxHighlighter>
             ) : (
-              <code className="bg-backgroundReact text-foreground px-2 py-[2px] rounded text-center">
+              <code
+                className={cn(
+                  "text-foreground px-2 py-[2px] rounded text-center",
+                  backgroundLangStyle(currentNav)
+                )}
+              >
                 {children}
               </code>
             );

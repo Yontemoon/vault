@@ -66,7 +66,7 @@ function RootComponent() {
     <RootDocument>
       <ThemeProvider>
         <HeaderNavBar />
-        <div className="mx-auto w-ful max-w-6xl">
+        <div className="mx-auto w-ful max-w-5xl">
           <SidebarProvider>
             {isParent && <AppSidebar />}
             <main className="w-full">
