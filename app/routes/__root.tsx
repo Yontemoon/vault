@@ -61,18 +61,20 @@ export const Route = createRootRoute({
 });
 
 function RootComponent() {
-  const isParent = useIsParent();
+  // const isParent = useIsParent();
   return (
     <RootDocument>
       <ThemeProvider>
         <HeaderNavBar />
         <div className="mx-auto w-ful max-w-5xl">
-          <SidebarProvider>
-            {isParent && <AppSidebar />}
-            <main className="w-full">
+          {/* <SidebarProvider> */}
+          {/* {isParent && <AppSidebar />} */}
+          <main className=" mx-5">
+            <div className="w-full">
               <Outlet />
-            </main>
-          </SidebarProvider>
+            </div>
+          </main>
+          {/* </SidebarProvider> */}
           {/* <ThemeToggle /> */}
           {import.meta.env.DEV && <TanStackRouterDevtools />}
         </div>

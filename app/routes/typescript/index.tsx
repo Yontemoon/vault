@@ -1,11 +1,15 @@
 import Heading from "@/components/heading";
+import useChildRoutes from "@/hooks/use-child-routes";
 import { createFileRoute } from "@tanstack/react-router";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/typescript/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
+  const routes = useChildRoutes();
+  console.log(routes);
   return (
     <div>
       <Heading>Typescript</Heading>
@@ -18,7 +22,13 @@ function RouteComponent() {
         application so i can look at it later before I forget.
       </p>
       <br />
-      <p>Testing 123</p>
+      {routes.map((route) => {
+        return (
+          <Link key={route.key} to={route.key}>
+            <div>{route.key}</div>
+          </Link>
+        );
+      })}
     </div>
   );
 }

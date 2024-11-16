@@ -22,7 +22,7 @@ const MarkdownComp = ({ content }: PropTypes) => {
   }, [location]);
   console.log(currentNav);
   return (
-    <article className="mx-5">
+    <article>
       <Markdown
         unwrapDisallowed={true}
         components={{
