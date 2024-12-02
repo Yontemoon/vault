@@ -1,13 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Heading from "@/components/heading";
-import useChildRoutes from "@/hooks/use-child-routes";
+import useAllPaths from "@/hooks/use-all-paths";
 
 export const Route = createFileRoute("/react/")({
   component: RouteComponent,
 });
 
 function RouteComponent() {
-  const routes = useChildRoutes();
+  const routes = useAllPaths();
   return (
     <div>
       <Heading as="h1" size="xl">

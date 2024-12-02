@@ -5,7 +5,7 @@ import type { FileRoutesByFullPath } from "@/routeTree.gen";
 type Keys = keyof FileRoutesByFullPath;
 type RouterValues = FileRoutesByFullPath[Keys];
 
-function useChildRoutes(): {
+function useAllPaths(): {
   key: string;
   value: RouterValues;
 }[] {
@@ -28,4 +28,4 @@ function useChildRoutes(): {
   return getPaths;
 }
 
-export default useChildRoutes;
+export default useAllPaths;

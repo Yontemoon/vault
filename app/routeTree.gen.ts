@@ -8,6 +8,8 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
+
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
@@ -16,22 +18,49 @@ import { Route as TypescriptIndexImport } from './routes/typescript/index'
 import { Route as ReactIndexImport } from './routes/react/index'
 import { Route as JavascriptIndexImport } from './routes/javascript/index'
 import { Route as CssIndexImport } from './routes/css/index'
-import { Route as TypescriptReturnTypesImport } from './routes/typescript/return-types'
-import { Route as TypescriptRecordImport } from './routes/typescript/record'
-import { Route as TypescriptPickAndOmitImport } from './routes/typescript/pick-and-omit'
-import { Route as TypescriptPartialAndRequiredImport } from './routes/typescript/partial-and-required'
-import { Route as TypescriptGroupedTypesImport } from './routes/typescript/grouped-types'
-import { Route as TypescriptGenericsImport } from './routes/typescript/generics'
-import { Route as TypescriptDiscriminatedUnionsImport } from './routes/typescript/discriminated-unions'
-import { Route as TypescriptConstReadOnlyImport } from './routes/typescript/const-read-only'
-import { Route as TypescriptCheckTypesImport } from './routes/typescript/check-types'
-import { Route as TypescriptAwaitedImport } from './routes/typescript/awaited'
-import { Route as ReactUseRefImport } from './routes/react/use-ref'
-import { Route as ReactGenericComponentsImport } from './routes/react/generic-components'
-import { Route as ReactElementPropsImport } from './routes/react/element-props'
-import { Route as JavascriptTestingImport } from './routes/javascript/testing'
+import { Route as TypescriptLayoutImport } from './routes/typescript/_layout'
+import { Route as ReactLayoutImport } from './routes/react/_layout'
+import { Route as JavascriptLayoutImport } from './routes/javascript/_layout'
+import { Route as TypescriptLayoutReturnTypesImport } from './routes/typescript/_layout/return-types'
+import { Route as TypescriptLayoutRecordImport } from './routes/typescript/_layout/record'
+import { Route as TypescriptLayoutPickAndOmitImport } from './routes/typescript/_layout/pick-and-omit'
+import { Route as TypescriptLayoutPartialAndRequiredImport } from './routes/typescript/_layout/partial-and-required'
+import { Route as TypescriptLayoutGroupedTypesImport } from './routes/typescript/_layout/grouped-types'
+import { Route as TypescriptLayoutGenericsImport } from './routes/typescript/_layout/generics'
+import { Route as TypescriptLayoutDiscriminatedUnionsImport } from './routes/typescript/_layout/discriminated-unions'
+import { Route as TypescriptLayoutConstReadOnlyImport } from './routes/typescript/_layout/const-read-only'
+import { Route as TypescriptLayoutCheckTypesImport } from './routes/typescript/_layout/check-types'
+import { Route as TypescriptLayoutAwaitedImport } from './routes/typescript/_layout/awaited'
+import { Route as ReactLayoutUseRefImport } from './routes/react/_layout/use-ref'
+import { Route as ReactLayoutGenericComponentsImport } from './routes/react/_layout/generic-components'
+import { Route as ReactLayoutElementPropsImport } from './routes/react/_layout/element-props'
+import { Route as JavascriptLayoutTestingImport } from './routes/javascript/_layout/testing'
+
+// Create Virtual Routes
+
+const TypescriptImport = createFileRoute('/typescript')()
+const ReactImport = createFileRoute('/react')()
+const JavascriptImport = createFileRoute('/javascript')()
 
 // Create/Update Routes
+
+const TypescriptRoute = TypescriptImport.update({
+  id: '/typescript',
+  path: '/typescript',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ReactRoute = ReactImport.update({
+  id: '/react',
+  path: '/react',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const JavascriptRoute = JavascriptImport.update({
+  id: '/javascript',
+  path: '/javascript',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
@@ -40,21 +69,21 @@ const IndexRoute = IndexImport.update({
 } as any)
 
 const TypescriptIndexRoute = TypescriptIndexImport.update({
-  id: '/typescript/',
-  path: '/typescript/',
-  getParentRoute: () => rootRoute,
+  id: '/',
+  path: '/',
+  getParentRoute: () => TypescriptRoute,
 } as any)
 
 const ReactIndexRoute = ReactIndexImport.update({
-  id: '/react/',
-  path: '/react/',
-  getParentRoute: () => rootRoute,
+  id: '/',
+  path: '/',
+  getParentRoute: () => ReactRoute,
 } as any)
 
 const JavascriptIndexRoute = JavascriptIndexImport.update({
-  id: '/javascript/',
-  path: '/javascript/',
-  getParentRoute: () => rootRoute,
+  id: '/',
+  path: '/',
+  getParentRoute: () => JavascriptRoute,
 } as any)
 
 const CssIndexRoute = CssIndexImport.update({
@@ -63,90 +92,112 @@ const CssIndexRoute = CssIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const TypescriptReturnTypesRoute = TypescriptReturnTypesImport.update({
-  id: '/typescript/return-types',
-  path: '/typescript/return-types',
-  getParentRoute: () => rootRoute,
+const TypescriptLayoutRoute = TypescriptLayoutImport.update({
+  id: '/_layout',
+  getParentRoute: () => TypescriptRoute,
 } as any)
 
-const TypescriptRecordRoute = TypescriptRecordImport.update({
-  id: '/typescript/record',
-  path: '/typescript/record',
-  getParentRoute: () => rootRoute,
+const ReactLayoutRoute = ReactLayoutImport.update({
+  id: '/_layout',
+  getParentRoute: () => ReactRoute,
 } as any)
 
-const TypescriptPickAndOmitRoute = TypescriptPickAndOmitImport.update({
-  id: '/typescript/pick-and-omit',
-  path: '/typescript/pick-and-omit',
-  getParentRoute: () => rootRoute,
+const JavascriptLayoutRoute = JavascriptLayoutImport.update({
+  id: '/_layout',
+  getParentRoute: () => JavascriptRoute,
 } as any)
 
-const TypescriptPartialAndRequiredRoute =
-  TypescriptPartialAndRequiredImport.update({
-    id: '/typescript/partial-and-required',
-    path: '/typescript/partial-and-required',
-    getParentRoute: () => rootRoute,
+const TypescriptLayoutReturnTypesRoute =
+  TypescriptLayoutReturnTypesImport.update({
+    id: '/return-types',
+    path: '/return-types',
+    getParentRoute: () => TypescriptLayoutRoute,
   } as any)
 
-const TypescriptGroupedTypesRoute = TypescriptGroupedTypesImport.update({
-  id: '/typescript/grouped-types',
-  path: '/typescript/grouped-types',
-  getParentRoute: () => rootRoute,
+const TypescriptLayoutRecordRoute = TypescriptLayoutRecordImport.update({
+  id: '/record',
+  path: '/record',
+  getParentRoute: () => TypescriptLayoutRoute,
 } as any)
 
-const TypescriptGenericsRoute = TypescriptGenericsImport.update({
-  id: '/typescript/generics',
-  path: '/typescript/generics',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const TypescriptDiscriminatedUnionsRoute =
-  TypescriptDiscriminatedUnionsImport.update({
-    id: '/typescript/discriminated-unions',
-    path: '/typescript/discriminated-unions',
-    getParentRoute: () => rootRoute,
+const TypescriptLayoutPickAndOmitRoute =
+  TypescriptLayoutPickAndOmitImport.update({
+    id: '/pick-and-omit',
+    path: '/pick-and-omit',
+    getParentRoute: () => TypescriptLayoutRoute,
   } as any)
 
-const TypescriptConstReadOnlyRoute = TypescriptConstReadOnlyImport.update({
-  id: '/typescript/const-read-only',
-  path: '/typescript/const-read-only',
-  getParentRoute: () => rootRoute,
+const TypescriptLayoutPartialAndRequiredRoute =
+  TypescriptLayoutPartialAndRequiredImport.update({
+    id: '/partial-and-required',
+    path: '/partial-and-required',
+    getParentRoute: () => TypescriptLayoutRoute,
+  } as any)
+
+const TypescriptLayoutGroupedTypesRoute =
+  TypescriptLayoutGroupedTypesImport.update({
+    id: '/grouped-types',
+    path: '/grouped-types',
+    getParentRoute: () => TypescriptLayoutRoute,
+  } as any)
+
+const TypescriptLayoutGenericsRoute = TypescriptLayoutGenericsImport.update({
+  id: '/generics',
+  path: '/generics',
+  getParentRoute: () => TypescriptLayoutRoute,
 } as any)
 
-const TypescriptCheckTypesRoute = TypescriptCheckTypesImport.update({
-  id: '/typescript/check-types',
-  path: '/typescript/check-types',
-  getParentRoute: () => rootRoute,
+const TypescriptLayoutDiscriminatedUnionsRoute =
+  TypescriptLayoutDiscriminatedUnionsImport.update({
+    id: '/discriminated-unions',
+    path: '/discriminated-unions',
+    getParentRoute: () => TypescriptLayoutRoute,
+  } as any)
+
+const TypescriptLayoutConstReadOnlyRoute =
+  TypescriptLayoutConstReadOnlyImport.update({
+    id: '/const-read-only',
+    path: '/const-read-only',
+    getParentRoute: () => TypescriptLayoutRoute,
+  } as any)
+
+const TypescriptLayoutCheckTypesRoute = TypescriptLayoutCheckTypesImport.update(
+  {
+    id: '/check-types',
+    path: '/check-types',
+    getParentRoute: () => TypescriptLayoutRoute,
+  } as any,
+)
+
+const TypescriptLayoutAwaitedRoute = TypescriptLayoutAwaitedImport.update({
+  id: '/awaited',
+  path: '/awaited',
+  getParentRoute: () => TypescriptLayoutRoute,
 } as any)
 
-const TypescriptAwaitedRoute = TypescriptAwaitedImport.update({
-  id: '/typescript/awaited',
-  path: '/typescript/awaited',
-  getParentRoute: () => rootRoute,
+const ReactLayoutUseRefRoute = ReactLayoutUseRefImport.update({
+  id: '/use-ref',
+  path: '/use-ref',
+  getParentRoute: () => ReactLayoutRoute,
 } as any)
 
-const ReactUseRefRoute = ReactUseRefImport.update({
-  id: '/react/use-ref',
-  path: '/react/use-ref',
-  getParentRoute: () => rootRoute,
+const ReactLayoutGenericComponentsRoute =
+  ReactLayoutGenericComponentsImport.update({
+    id: '/generic-components',
+    path: '/generic-components',
+    getParentRoute: () => ReactLayoutRoute,
+  } as any)
+
+const ReactLayoutElementPropsRoute = ReactLayoutElementPropsImport.update({
+  id: '/element-props',
+  path: '/element-props',
+  getParentRoute: () => ReactLayoutRoute,
 } as any)
 
-const ReactGenericComponentsRoute = ReactGenericComponentsImport.update({
-  id: '/react/generic-components',
-  path: '/react/generic-components',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const ReactElementPropsRoute = ReactElementPropsImport.update({
-  id: '/react/element-props',
-  path: '/react/element-props',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const JavascriptTestingRoute = JavascriptTestingImport.update({
-  id: '/javascript/testing',
-  path: '/javascript/testing',
-  getParentRoute: () => rootRoute,
+const JavascriptLayoutTestingRoute = JavascriptLayoutTestingImport.update({
+  id: '/testing',
+  path: '/testing',
+  getParentRoute: () => JavascriptLayoutRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -160,103 +211,47 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/javascript/testing': {
-      id: '/javascript/testing'
-      path: '/javascript/testing'
-      fullPath: '/javascript/testing'
-      preLoaderRoute: typeof JavascriptTestingImport
+    '/javascript': {
+      id: '/javascript'
+      path: '/javascript'
+      fullPath: '/javascript'
+      preLoaderRoute: typeof JavascriptImport
       parentRoute: typeof rootRoute
     }
-    '/react/element-props': {
-      id: '/react/element-props'
-      path: '/react/element-props'
-      fullPath: '/react/element-props'
-      preLoaderRoute: typeof ReactElementPropsImport
+    '/javascript/_layout': {
+      id: '/javascript/_layout'
+      path: '/javascript'
+      fullPath: '/javascript'
+      preLoaderRoute: typeof JavascriptLayoutImport
+      parentRoute: typeof JavascriptRoute
+    }
+    '/react': {
+      id: '/react'
+      path: '/react'
+      fullPath: '/react'
+      preLoaderRoute: typeof ReactImport
       parentRoute: typeof rootRoute
     }
-    '/react/generic-components': {
-      id: '/react/generic-components'
-      path: '/react/generic-components'
-      fullPath: '/react/generic-components'
-      preLoaderRoute: typeof ReactGenericComponentsImport
+    '/react/_layout': {
+      id: '/react/_layout'
+      path: '/react'
+      fullPath: '/react'
+      preLoaderRoute: typeof ReactLayoutImport
+      parentRoute: typeof ReactRoute
+    }
+    '/typescript': {
+      id: '/typescript'
+      path: '/typescript'
+      fullPath: '/typescript'
+      preLoaderRoute: typeof TypescriptImport
       parentRoute: typeof rootRoute
     }
-    '/react/use-ref': {
-      id: '/react/use-ref'
-      path: '/react/use-ref'
-      fullPath: '/react/use-ref'
-      preLoaderRoute: typeof ReactUseRefImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/awaited': {
-      id: '/typescript/awaited'
-      path: '/typescript/awaited'
-      fullPath: '/typescript/awaited'
-      preLoaderRoute: typeof TypescriptAwaitedImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/check-types': {
-      id: '/typescript/check-types'
-      path: '/typescript/check-types'
-      fullPath: '/typescript/check-types'
-      preLoaderRoute: typeof TypescriptCheckTypesImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/const-read-only': {
-      id: '/typescript/const-read-only'
-      path: '/typescript/const-read-only'
-      fullPath: '/typescript/const-read-only'
-      preLoaderRoute: typeof TypescriptConstReadOnlyImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/discriminated-unions': {
-      id: '/typescript/discriminated-unions'
-      path: '/typescript/discriminated-unions'
-      fullPath: '/typescript/discriminated-unions'
-      preLoaderRoute: typeof TypescriptDiscriminatedUnionsImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/generics': {
-      id: '/typescript/generics'
-      path: '/typescript/generics'
-      fullPath: '/typescript/generics'
-      preLoaderRoute: typeof TypescriptGenericsImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/grouped-types': {
-      id: '/typescript/grouped-types'
-      path: '/typescript/grouped-types'
-      fullPath: '/typescript/grouped-types'
-      preLoaderRoute: typeof TypescriptGroupedTypesImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/partial-and-required': {
-      id: '/typescript/partial-and-required'
-      path: '/typescript/partial-and-required'
-      fullPath: '/typescript/partial-and-required'
-      preLoaderRoute: typeof TypescriptPartialAndRequiredImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/pick-and-omit': {
-      id: '/typescript/pick-and-omit'
-      path: '/typescript/pick-and-omit'
-      fullPath: '/typescript/pick-and-omit'
-      preLoaderRoute: typeof TypescriptPickAndOmitImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/record': {
-      id: '/typescript/record'
-      path: '/typescript/record'
-      fullPath: '/typescript/record'
-      preLoaderRoute: typeof TypescriptRecordImport
-      parentRoute: typeof rootRoute
-    }
-    '/typescript/return-types': {
-      id: '/typescript/return-types'
-      path: '/typescript/return-types'
-      fullPath: '/typescript/return-types'
-      preLoaderRoute: typeof TypescriptReturnTypesImport
-      parentRoute: typeof rootRoute
+    '/typescript/_layout': {
+      id: '/typescript/_layout'
+      path: '/typescript'
+      fullPath: '/typescript'
+      preLoaderRoute: typeof TypescriptLayoutImport
+      parentRoute: typeof TypescriptRoute
     }
     '/css/': {
       id: '/css/'
@@ -267,101 +262,313 @@ declare module '@tanstack/react-router' {
     }
     '/javascript/': {
       id: '/javascript/'
-      path: '/javascript'
-      fullPath: '/javascript'
+      path: '/'
+      fullPath: '/javascript/'
       preLoaderRoute: typeof JavascriptIndexImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof JavascriptImport
     }
     '/react/': {
       id: '/react/'
-      path: '/react'
-      fullPath: '/react'
+      path: '/'
+      fullPath: '/react/'
       preLoaderRoute: typeof ReactIndexImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof ReactImport
     }
     '/typescript/': {
       id: '/typescript/'
-      path: '/typescript'
-      fullPath: '/typescript'
+      path: '/'
+      fullPath: '/typescript/'
       preLoaderRoute: typeof TypescriptIndexImport
-      parentRoute: typeof rootRoute
+      parentRoute: typeof TypescriptImport
+    }
+    '/javascript/_layout/testing': {
+      id: '/javascript/_layout/testing'
+      path: '/testing'
+      fullPath: '/javascript/testing'
+      preLoaderRoute: typeof JavascriptLayoutTestingImport
+      parentRoute: typeof JavascriptLayoutImport
+    }
+    '/react/_layout/element-props': {
+      id: '/react/_layout/element-props'
+      path: '/element-props'
+      fullPath: '/react/element-props'
+      preLoaderRoute: typeof ReactLayoutElementPropsImport
+      parentRoute: typeof ReactLayoutImport
+    }
+    '/react/_layout/generic-components': {
+      id: '/react/_layout/generic-components'
+      path: '/generic-components'
+      fullPath: '/react/generic-components'
+      preLoaderRoute: typeof ReactLayoutGenericComponentsImport
+      parentRoute: typeof ReactLayoutImport
+    }
+    '/react/_layout/use-ref': {
+      id: '/react/_layout/use-ref'
+      path: '/use-ref'
+      fullPath: '/react/use-ref'
+      preLoaderRoute: typeof ReactLayoutUseRefImport
+      parentRoute: typeof ReactLayoutImport
+    }
+    '/typescript/_layout/awaited': {
+      id: '/typescript/_layout/awaited'
+      path: '/awaited'
+      fullPath: '/typescript/awaited'
+      preLoaderRoute: typeof TypescriptLayoutAwaitedImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/check-types': {
+      id: '/typescript/_layout/check-types'
+      path: '/check-types'
+      fullPath: '/typescript/check-types'
+      preLoaderRoute: typeof TypescriptLayoutCheckTypesImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/const-read-only': {
+      id: '/typescript/_layout/const-read-only'
+      path: '/const-read-only'
+      fullPath: '/typescript/const-read-only'
+      preLoaderRoute: typeof TypescriptLayoutConstReadOnlyImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/discriminated-unions': {
+      id: '/typescript/_layout/discriminated-unions'
+      path: '/discriminated-unions'
+      fullPath: '/typescript/discriminated-unions'
+      preLoaderRoute: typeof TypescriptLayoutDiscriminatedUnionsImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/generics': {
+      id: '/typescript/_layout/generics'
+      path: '/generics'
+      fullPath: '/typescript/generics'
+      preLoaderRoute: typeof TypescriptLayoutGenericsImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/grouped-types': {
+      id: '/typescript/_layout/grouped-types'
+      path: '/grouped-types'
+      fullPath: '/typescript/grouped-types'
+      preLoaderRoute: typeof TypescriptLayoutGroupedTypesImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/partial-and-required': {
+      id: '/typescript/_layout/partial-and-required'
+      path: '/partial-and-required'
+      fullPath: '/typescript/partial-and-required'
+      preLoaderRoute: typeof TypescriptLayoutPartialAndRequiredImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/pick-and-omit': {
+      id: '/typescript/_layout/pick-and-omit'
+      path: '/pick-and-omit'
+      fullPath: '/typescript/pick-and-omit'
+      preLoaderRoute: typeof TypescriptLayoutPickAndOmitImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/record': {
+      id: '/typescript/_layout/record'
+      path: '/record'
+      fullPath: '/typescript/record'
+      preLoaderRoute: typeof TypescriptLayoutRecordImport
+      parentRoute: typeof TypescriptLayoutImport
+    }
+    '/typescript/_layout/return-types': {
+      id: '/typescript/_layout/return-types'
+      path: '/return-types'
+      fullPath: '/typescript/return-types'
+      preLoaderRoute: typeof TypescriptLayoutReturnTypesImport
+      parentRoute: typeof TypescriptLayoutImport
     }
   }
 }
 
 // Create and export the route tree
 
+interface JavascriptLayoutRouteChildren {
+  JavascriptLayoutTestingRoute: typeof JavascriptLayoutTestingRoute
+}
+
+const JavascriptLayoutRouteChildren: JavascriptLayoutRouteChildren = {
+  JavascriptLayoutTestingRoute: JavascriptLayoutTestingRoute,
+}
+
+const JavascriptLayoutRouteWithChildren =
+  JavascriptLayoutRoute._addFileChildren(JavascriptLayoutRouteChildren)
+
+interface JavascriptRouteChildren {
+  JavascriptLayoutRoute: typeof JavascriptLayoutRouteWithChildren
+  JavascriptIndexRoute: typeof JavascriptIndexRoute
+}
+
+const JavascriptRouteChildren: JavascriptRouteChildren = {
+  JavascriptLayoutRoute: JavascriptLayoutRouteWithChildren,
+  JavascriptIndexRoute: JavascriptIndexRoute,
+}
+
+const JavascriptRouteWithChildren = JavascriptRoute._addFileChildren(
+  JavascriptRouteChildren,
+)
+
+interface ReactLayoutRouteChildren {
+  ReactLayoutElementPropsRoute: typeof ReactLayoutElementPropsRoute
+  ReactLayoutGenericComponentsRoute: typeof ReactLayoutGenericComponentsRoute
+  ReactLayoutUseRefRoute: typeof ReactLayoutUseRefRoute
+}
+
+const ReactLayoutRouteChildren: ReactLayoutRouteChildren = {
+  ReactLayoutElementPropsRoute: ReactLayoutElementPropsRoute,
+  ReactLayoutGenericComponentsRoute: ReactLayoutGenericComponentsRoute,
+  ReactLayoutUseRefRoute: ReactLayoutUseRefRoute,
+}
+
+const ReactLayoutRouteWithChildren = ReactLayoutRoute._addFileChildren(
+  ReactLayoutRouteChildren,
+)
+
+interface ReactRouteChildren {
+  ReactLayoutRoute: typeof ReactLayoutRouteWithChildren
+  ReactIndexRoute: typeof ReactIndexRoute
+}
+
+const ReactRouteChildren: ReactRouteChildren = {
+  ReactLayoutRoute: ReactLayoutRouteWithChildren,
+  ReactIndexRoute: ReactIndexRoute,
+}
+
+const ReactRouteWithChildren = ReactRoute._addFileChildren(ReactRouteChildren)
+
+interface TypescriptLayoutRouteChildren {
+  TypescriptLayoutAwaitedRoute: typeof TypescriptLayoutAwaitedRoute
+  TypescriptLayoutCheckTypesRoute: typeof TypescriptLayoutCheckTypesRoute
+  TypescriptLayoutConstReadOnlyRoute: typeof TypescriptLayoutConstReadOnlyRoute
+  TypescriptLayoutDiscriminatedUnionsRoute: typeof TypescriptLayoutDiscriminatedUnionsRoute
+  TypescriptLayoutGenericsRoute: typeof TypescriptLayoutGenericsRoute
+  TypescriptLayoutGroupedTypesRoute: typeof TypescriptLayoutGroupedTypesRoute
+  TypescriptLayoutPartialAndRequiredRoute: typeof TypescriptLayoutPartialAndRequiredRoute
+  TypescriptLayoutPickAndOmitRoute: typeof TypescriptLayoutPickAndOmitRoute
+  TypescriptLayoutRecordRoute: typeof TypescriptLayoutRecordRoute
+  TypescriptLayoutReturnTypesRoute: typeof TypescriptLayoutReturnTypesRoute
+}
+
+const TypescriptLayoutRouteChildren: TypescriptLayoutRouteChildren = {
+  TypescriptLayoutAwaitedRoute: TypescriptLayoutAwaitedRoute,
+  TypescriptLayoutCheckTypesRoute: TypescriptLayoutCheckTypesRoute,
+  TypescriptLayoutConstReadOnlyRoute: TypescriptLayoutConstReadOnlyRoute,
+  TypescriptLayoutDiscriminatedUnionsRoute:
+    TypescriptLayoutDiscriminatedUnionsRoute,
+  TypescriptLayoutGenericsRoute: TypescriptLayoutGenericsRoute,
+  TypescriptLayoutGroupedTypesRoute: TypescriptLayoutGroupedTypesRoute,
+  TypescriptLayoutPartialAndRequiredRoute:
+    TypescriptLayoutPartialAndRequiredRoute,
+  TypescriptLayoutPickAndOmitRoute: TypescriptLayoutPickAndOmitRoute,
+  TypescriptLayoutRecordRoute: TypescriptLayoutRecordRoute,
+  TypescriptLayoutReturnTypesRoute: TypescriptLayoutReturnTypesRoute,
+}
+
+const TypescriptLayoutRouteWithChildren =
+  TypescriptLayoutRoute._addFileChildren(TypescriptLayoutRouteChildren)
+
+interface TypescriptRouteChildren {
+  TypescriptLayoutRoute: typeof TypescriptLayoutRouteWithChildren
+  TypescriptIndexRoute: typeof TypescriptIndexRoute
+}
+
+const TypescriptRouteChildren: TypescriptRouteChildren = {
+  TypescriptLayoutRoute: TypescriptLayoutRouteWithChildren,
+  TypescriptIndexRoute: TypescriptIndexRoute,
+}
+
+const TypescriptRouteWithChildren = TypescriptRoute._addFileChildren(
+  TypescriptRouteChildren,
+)
+
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/javascript/testing': typeof JavascriptTestingRoute
-  '/react/element-props': typeof ReactElementPropsRoute
-  '/react/generic-components': typeof ReactGenericComponentsRoute
-  '/react/use-ref': typeof ReactUseRefRoute
-  '/typescript/awaited': typeof TypescriptAwaitedRoute
-  '/typescript/check-types': typeof TypescriptCheckTypesRoute
-  '/typescript/const-read-only': typeof TypescriptConstReadOnlyRoute
-  '/typescript/discriminated-unions': typeof TypescriptDiscriminatedUnionsRoute
-  '/typescript/generics': typeof TypescriptGenericsRoute
-  '/typescript/grouped-types': typeof TypescriptGroupedTypesRoute
-  '/typescript/partial-and-required': typeof TypescriptPartialAndRequiredRoute
-  '/typescript/pick-and-omit': typeof TypescriptPickAndOmitRoute
-  '/typescript/record': typeof TypescriptRecordRoute
-  '/typescript/return-types': typeof TypescriptReturnTypesRoute
+  '/javascript': typeof JavascriptLayoutRouteWithChildren
+  '/react': typeof ReactLayoutRouteWithChildren
+  '/typescript': typeof TypescriptLayoutRouteWithChildren
   '/css': typeof CssIndexRoute
-  '/javascript': typeof JavascriptIndexRoute
-  '/react': typeof ReactIndexRoute
-  '/typescript': typeof TypescriptIndexRoute
+  '/javascript/': typeof JavascriptIndexRoute
+  '/react/': typeof ReactIndexRoute
+  '/typescript/': typeof TypescriptIndexRoute
+  '/javascript/testing': typeof JavascriptLayoutTestingRoute
+  '/react/element-props': typeof ReactLayoutElementPropsRoute
+  '/react/generic-components': typeof ReactLayoutGenericComponentsRoute
+  '/react/use-ref': typeof ReactLayoutUseRefRoute
+  '/typescript/awaited': typeof TypescriptLayoutAwaitedRoute
+  '/typescript/check-types': typeof TypescriptLayoutCheckTypesRoute
+  '/typescript/const-read-only': typeof TypescriptLayoutConstReadOnlyRoute
+  '/typescript/discriminated-unions': typeof TypescriptLayoutDiscriminatedUnionsRoute
+  '/typescript/generics': typeof TypescriptLayoutGenericsRoute
+  '/typescript/grouped-types': typeof TypescriptLayoutGroupedTypesRoute
+  '/typescript/partial-and-required': typeof TypescriptLayoutPartialAndRequiredRoute
+  '/typescript/pick-and-omit': typeof TypescriptLayoutPickAndOmitRoute
+  '/typescript/record': typeof TypescriptLayoutRecordRoute
+  '/typescript/return-types': typeof TypescriptLayoutReturnTypesRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/javascript/testing': typeof JavascriptTestingRoute
-  '/react/element-props': typeof ReactElementPropsRoute
-  '/react/generic-components': typeof ReactGenericComponentsRoute
-  '/react/use-ref': typeof ReactUseRefRoute
-  '/typescript/awaited': typeof TypescriptAwaitedRoute
-  '/typescript/check-types': typeof TypescriptCheckTypesRoute
-  '/typescript/const-read-only': typeof TypescriptConstReadOnlyRoute
-  '/typescript/discriminated-unions': typeof TypescriptDiscriminatedUnionsRoute
-  '/typescript/generics': typeof TypescriptGenericsRoute
-  '/typescript/grouped-types': typeof TypescriptGroupedTypesRoute
-  '/typescript/partial-and-required': typeof TypescriptPartialAndRequiredRoute
-  '/typescript/pick-and-omit': typeof TypescriptPickAndOmitRoute
-  '/typescript/record': typeof TypescriptRecordRoute
-  '/typescript/return-types': typeof TypescriptReturnTypesRoute
-  '/css': typeof CssIndexRoute
   '/javascript': typeof JavascriptIndexRoute
   '/react': typeof ReactIndexRoute
   '/typescript': typeof TypescriptIndexRoute
+  '/css': typeof CssIndexRoute
+  '/javascript/testing': typeof JavascriptLayoutTestingRoute
+  '/react/element-props': typeof ReactLayoutElementPropsRoute
+  '/react/generic-components': typeof ReactLayoutGenericComponentsRoute
+  '/react/use-ref': typeof ReactLayoutUseRefRoute
+  '/typescript/awaited': typeof TypescriptLayoutAwaitedRoute
+  '/typescript/check-types': typeof TypescriptLayoutCheckTypesRoute
+  '/typescript/const-read-only': typeof TypescriptLayoutConstReadOnlyRoute
+  '/typescript/discriminated-unions': typeof TypescriptLayoutDiscriminatedUnionsRoute
+  '/typescript/generics': typeof TypescriptLayoutGenericsRoute
+  '/typescript/grouped-types': typeof TypescriptLayoutGroupedTypesRoute
+  '/typescript/partial-and-required': typeof TypescriptLayoutPartialAndRequiredRoute
+  '/typescript/pick-and-omit': typeof TypescriptLayoutPickAndOmitRoute
+  '/typescript/record': typeof TypescriptLayoutRecordRoute
+  '/typescript/return-types': typeof TypescriptLayoutReturnTypesRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/javascript/testing': typeof JavascriptTestingRoute
-  '/react/element-props': typeof ReactElementPropsRoute
-  '/react/generic-components': typeof ReactGenericComponentsRoute
-  '/react/use-ref': typeof ReactUseRefRoute
-  '/typescript/awaited': typeof TypescriptAwaitedRoute
-  '/typescript/check-types': typeof TypescriptCheckTypesRoute
-  '/typescript/const-read-only': typeof TypescriptConstReadOnlyRoute
-  '/typescript/discriminated-unions': typeof TypescriptDiscriminatedUnionsRoute
-  '/typescript/generics': typeof TypescriptGenericsRoute
-  '/typescript/grouped-types': typeof TypescriptGroupedTypesRoute
-  '/typescript/partial-and-required': typeof TypescriptPartialAndRequiredRoute
-  '/typescript/pick-and-omit': typeof TypescriptPickAndOmitRoute
-  '/typescript/record': typeof TypescriptRecordRoute
-  '/typescript/return-types': typeof TypescriptReturnTypesRoute
+  '/javascript': typeof JavascriptRouteWithChildren
+  '/javascript/_layout': typeof JavascriptLayoutRouteWithChildren
+  '/react': typeof ReactRouteWithChildren
+  '/react/_layout': typeof ReactLayoutRouteWithChildren
+  '/typescript': typeof TypescriptRouteWithChildren
+  '/typescript/_layout': typeof TypescriptLayoutRouteWithChildren
   '/css/': typeof CssIndexRoute
   '/javascript/': typeof JavascriptIndexRoute
   '/react/': typeof ReactIndexRoute
   '/typescript/': typeof TypescriptIndexRoute
+  '/javascript/_layout/testing': typeof JavascriptLayoutTestingRoute
+  '/react/_layout/element-props': typeof ReactLayoutElementPropsRoute
+  '/react/_layout/generic-components': typeof ReactLayoutGenericComponentsRoute
+  '/react/_layout/use-ref': typeof ReactLayoutUseRefRoute
+  '/typescript/_layout/awaited': typeof TypescriptLayoutAwaitedRoute
+  '/typescript/_layout/check-types': typeof TypescriptLayoutCheckTypesRoute
+  '/typescript/_layout/const-read-only': typeof TypescriptLayoutConstReadOnlyRoute
+  '/typescript/_layout/discriminated-unions': typeof TypescriptLayoutDiscriminatedUnionsRoute
+  '/typescript/_layout/generics': typeof TypescriptLayoutGenericsRoute
+  '/typescript/_layout/grouped-types': typeof TypescriptLayoutGroupedTypesRoute
+  '/typescript/_layout/partial-and-required': typeof TypescriptLayoutPartialAndRequiredRoute
+  '/typescript/_layout/pick-and-omit': typeof TypescriptLayoutPickAndOmitRoute
+  '/typescript/_layout/record': typeof TypescriptLayoutRecordRoute
+  '/typescript/_layout/return-types': typeof TypescriptLayoutReturnTypesRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/javascript'
+    | '/react'
+    | '/typescript'
+    | '/css'
+    | '/javascript/'
+    | '/react/'
+    | '/typescript/'
     | '/javascript/testing'
     | '/react/element-props'
     | '/react/generic-components'
@@ -376,34 +583,13 @@ export interface FileRouteTypes {
     | '/typescript/pick-and-omit'
     | '/typescript/record'
     | '/typescript/return-types'
-    | '/css'
-    | '/javascript'
-    | '/react'
-    | '/typescript'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/javascript/testing'
-    | '/react/element-props'
-    | '/react/generic-components'
-    | '/react/use-ref'
-    | '/typescript/awaited'
-    | '/typescript/check-types'
-    | '/typescript/const-read-only'
-    | '/typescript/discriminated-unions'
-    | '/typescript/generics'
-    | '/typescript/grouped-types'
-    | '/typescript/partial-and-required'
-    | '/typescript/pick-and-omit'
-    | '/typescript/record'
-    | '/typescript/return-types'
-    | '/css'
     | '/javascript'
     | '/react'
     | '/typescript'
-  id:
-    | '__root__'
-    | '/'
+    | '/css'
     | '/javascript/testing'
     | '/react/element-props'
     | '/react/generic-components'
@@ -418,55 +604,50 @@ export interface FileRouteTypes {
     | '/typescript/pick-and-omit'
     | '/typescript/record'
     | '/typescript/return-types'
+  id:
+    | '__root__'
+    | '/'
+    | '/javascript'
+    | '/javascript/_layout'
+    | '/react'
+    | '/react/_layout'
+    | '/typescript'
+    | '/typescript/_layout'
     | '/css/'
     | '/javascript/'
     | '/react/'
     | '/typescript/'
+    | '/javascript/_layout/testing'
+    | '/react/_layout/element-props'
+    | '/react/_layout/generic-components'
+    | '/react/_layout/use-ref'
+    | '/typescript/_layout/awaited'
+    | '/typescript/_layout/check-types'
+    | '/typescript/_layout/const-read-only'
+    | '/typescript/_layout/discriminated-unions'
+    | '/typescript/_layout/generics'
+    | '/typescript/_layout/grouped-types'
+    | '/typescript/_layout/partial-and-required'
+    | '/typescript/_layout/pick-and-omit'
+    | '/typescript/_layout/record'
+    | '/typescript/_layout/return-types'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  JavascriptTestingRoute: typeof JavascriptTestingRoute
-  ReactElementPropsRoute: typeof ReactElementPropsRoute
-  ReactGenericComponentsRoute: typeof ReactGenericComponentsRoute
-  ReactUseRefRoute: typeof ReactUseRefRoute
-  TypescriptAwaitedRoute: typeof TypescriptAwaitedRoute
-  TypescriptCheckTypesRoute: typeof TypescriptCheckTypesRoute
-  TypescriptConstReadOnlyRoute: typeof TypescriptConstReadOnlyRoute
-  TypescriptDiscriminatedUnionsRoute: typeof TypescriptDiscriminatedUnionsRoute
-  TypescriptGenericsRoute: typeof TypescriptGenericsRoute
-  TypescriptGroupedTypesRoute: typeof TypescriptGroupedTypesRoute
-  TypescriptPartialAndRequiredRoute: typeof TypescriptPartialAndRequiredRoute
-  TypescriptPickAndOmitRoute: typeof TypescriptPickAndOmitRoute
-  TypescriptRecordRoute: typeof TypescriptRecordRoute
-  TypescriptReturnTypesRoute: typeof TypescriptReturnTypesRoute
+  JavascriptRoute: typeof JavascriptRouteWithChildren
+  ReactRoute: typeof ReactRouteWithChildren
+  TypescriptRoute: typeof TypescriptRouteWithChildren
   CssIndexRoute: typeof CssIndexRoute
-  JavascriptIndexRoute: typeof JavascriptIndexRoute
-  ReactIndexRoute: typeof ReactIndexRoute
-  TypescriptIndexRoute: typeof TypescriptIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  JavascriptTestingRoute: JavascriptTestingRoute,
-  ReactElementPropsRoute: ReactElementPropsRoute,
-  ReactGenericComponentsRoute: ReactGenericComponentsRoute,
-  ReactUseRefRoute: ReactUseRefRoute,
-  TypescriptAwaitedRoute: TypescriptAwaitedRoute,
-  TypescriptCheckTypesRoute: TypescriptCheckTypesRoute,
-  TypescriptConstReadOnlyRoute: TypescriptConstReadOnlyRoute,
-  TypescriptDiscriminatedUnionsRoute: TypescriptDiscriminatedUnionsRoute,
-  TypescriptGenericsRoute: TypescriptGenericsRoute,
-  TypescriptGroupedTypesRoute: TypescriptGroupedTypesRoute,
-  TypescriptPartialAndRequiredRoute: TypescriptPartialAndRequiredRoute,
-  TypescriptPickAndOmitRoute: TypescriptPickAndOmitRoute,
-  TypescriptRecordRoute: TypescriptRecordRoute,
-  TypescriptReturnTypesRoute: TypescriptReturnTypesRoute,
+  JavascriptRoute: JavascriptRouteWithChildren,
+  ReactRoute: ReactRouteWithChildren,
+  TypescriptRoute: TypescriptRouteWithChildren,
   CssIndexRoute: CssIndexRoute,
-  JavascriptIndexRoute: JavascriptIndexRoute,
-  ReactIndexRoute: ReactIndexRoute,
-  TypescriptIndexRoute: TypescriptIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -480,82 +661,138 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/javascript/testing",
-        "/react/element-props",
-        "/react/generic-components",
-        "/react/use-ref",
-        "/typescript/awaited",
-        "/typescript/check-types",
-        "/typescript/const-read-only",
-        "/typescript/discriminated-unions",
-        "/typescript/generics",
-        "/typescript/grouped-types",
-        "/typescript/partial-and-required",
-        "/typescript/pick-and-omit",
-        "/typescript/record",
-        "/typescript/return-types",
-        "/css/",
-        "/javascript/",
-        "/react/",
-        "/typescript/"
+        "/javascript",
+        "/react",
+        "/typescript",
+        "/css/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/javascript/testing": {
-      "filePath": "javascript/testing.tsx"
+    "/javascript": {
+      "filePath": "javascript",
+      "children": [
+        "/javascript/_layout",
+        "/javascript/"
+      ]
     },
-    "/react/element-props": {
-      "filePath": "react/element-props.tsx"
+    "/javascript/_layout": {
+      "filePath": "javascript/_layout.tsx",
+      "parent": "/javascript",
+      "children": [
+        "/javascript/_layout/testing"
+      ]
     },
-    "/react/generic-components": {
-      "filePath": "react/generic-components.tsx"
+    "/react": {
+      "filePath": "react",
+      "children": [
+        "/react/_layout",
+        "/react/"
+      ]
     },
-    "/react/use-ref": {
-      "filePath": "react/use-ref.tsx"
+    "/react/_layout": {
+      "filePath": "react/_layout.tsx",
+      "parent": "/react",
+      "children": [
+        "/react/_layout/element-props",
+        "/react/_layout/generic-components",
+        "/react/_layout/use-ref"
+      ]
     },
-    "/typescript/awaited": {
-      "filePath": "typescript/awaited.tsx"
+    "/typescript": {
+      "filePath": "typescript",
+      "children": [
+        "/typescript/_layout",
+        "/typescript/"
+      ]
     },
-    "/typescript/check-types": {
-      "filePath": "typescript/check-types.tsx"
-    },
-    "/typescript/const-read-only": {
-      "filePath": "typescript/const-read-only.tsx"
-    },
-    "/typescript/discriminated-unions": {
-      "filePath": "typescript/discriminated-unions.tsx"
-    },
-    "/typescript/generics": {
-      "filePath": "typescript/generics.tsx"
-    },
-    "/typescript/grouped-types": {
-      "filePath": "typescript/grouped-types.tsx"
-    },
-    "/typescript/partial-and-required": {
-      "filePath": "typescript/partial-and-required.tsx"
-    },
-    "/typescript/pick-and-omit": {
-      "filePath": "typescript/pick-and-omit.tsx"
-    },
-    "/typescript/record": {
-      "filePath": "typescript/record.tsx"
-    },
-    "/typescript/return-types": {
-      "filePath": "typescript/return-types.tsx"
+    "/typescript/_layout": {
+      "filePath": "typescript/_layout.tsx",
+      "parent": "/typescript",
+      "children": [
+        "/typescript/_layout/awaited",
+        "/typescript/_layout/check-types",
+        "/typescript/_layout/const-read-only",
+        "/typescript/_layout/discriminated-unions",
+        "/typescript/_layout/generics",
+        "/typescript/_layout/grouped-types",
+        "/typescript/_layout/partial-and-required",
+        "/typescript/_layout/pick-and-omit",
+        "/typescript/_layout/record",
+        "/typescript/_layout/return-types"
+      ]
     },
     "/css/": {
       "filePath": "css/index.tsx"
     },
     "/javascript/": {
-      "filePath": "javascript/index.tsx"
+      "filePath": "javascript/index.tsx",
+      "parent": "/javascript"
     },
     "/react/": {
-      "filePath": "react/index.tsx"
+      "filePath": "react/index.tsx",
+      "parent": "/react"
     },
     "/typescript/": {
-      "filePath": "typescript/index.tsx"
+      "filePath": "typescript/index.tsx",
+      "parent": "/typescript"
+    },
+    "/javascript/_layout/testing": {
+      "filePath": "javascript/_layout/testing.tsx",
+      "parent": "/javascript/_layout"
+    },
+    "/react/_layout/element-props": {
+      "filePath": "react/_layout/element-props.tsx",
+      "parent": "/react/_layout"
+    },
+    "/react/_layout/generic-components": {
+      "filePath": "react/_layout/generic-components.tsx",
+      "parent": "/react/_layout"
+    },
+    "/react/_layout/use-ref": {
+      "filePath": "react/_layout/use-ref.tsx",
+      "parent": "/react/_layout"
+    },
+    "/typescript/_layout/awaited": {
+      "filePath": "typescript/_layout/awaited.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/check-types": {
+      "filePath": "typescript/_layout/check-types.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/const-read-only": {
+      "filePath": "typescript/_layout/const-read-only.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/discriminated-unions": {
+      "filePath": "typescript/_layout/discriminated-unions.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/generics": {
+      "filePath": "typescript/_layout/generics.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/grouped-types": {
+      "filePath": "typescript/_layout/grouped-types.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/partial-and-required": {
+      "filePath": "typescript/_layout/partial-and-required.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/pick-and-omit": {
+      "filePath": "typescript/_layout/pick-and-omit.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/record": {
+      "filePath": "typescript/_layout/record.tsx",
+      "parent": "/typescript/_layout"
+    },
+    "/typescript/_layout/return-types": {
+      "filePath": "typescript/_layout/return-types.tsx",
+      "parent": "/typescript/_layout"
     }
   }
 }

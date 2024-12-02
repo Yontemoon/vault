@@ -1,5 +1,5 @@
 import Heading from "@/components/heading";
-import useChildRoutes from "@/hooks/use-child-routes";
+import useAllPaths from "@/hooks/use-all-paths";
 import { createFileRoute, Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/javascript/")({
@@ -7,7 +7,7 @@ export const Route = createFileRoute("/javascript/")({
 });
 
 function RouteComponent() {
-  const routes = useChildRoutes();
+  const routes = useAllPaths();
   return (
     <div>
       <Heading>Javascript</Heading>
@@ -20,11 +20,9 @@ function RouteComponent() {
         and I accepted that I won't ever learn everything to learn. But I'll
         give it a try with this website.
       </p>
-      <br/>
-      <br/>
-      <p>
-        Hello world this is a test.
-      </p>
+      <br />
+      <br />
+      <p>Hello world this is a test.</p>
       {routes.map((route) => {
         return (
           <Link key={route.key} to={route.key}>

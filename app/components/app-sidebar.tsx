@@ -19,13 +19,13 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Link, useLocation } from "@tanstack/react-router";
-import useChildRoutes from "@/hooks/use-child-routes";
+import useAllPaths from "@/hooks/use-all-paths";
 import { getParentUrl, urlToTitle } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 import { NAVIGATION_LINKS } from "@/lib/constants";
 
 function AppSidebar() {
-  const routes = useChildRoutes();
+  const routes = useAllPaths();
   const location = useLocation();
 
   return (

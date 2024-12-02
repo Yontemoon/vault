@@ -1,15 +1,13 @@
-import Heading from "@/components/heading";
-import useChildRoutes from "@/hooks/use-child-routes";
-import { createFileRoute } from "@tanstack/react-router";
-import { Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from '@tanstack/react-router'
+import useAllPaths from '@/hooks/use-all-paths'
+import Heading from '@/components/heading'
 
-export const Route = createFileRoute("/typescript/")({
+export const Route = createFileRoute('/typescript/')({
   component: RouteComponent,
-});
+})
 
 function RouteComponent() {
-  const routes = useChildRoutes();
-  console.log(routes);
+  const routes = useAllPaths()
   return (
     <div>
       <Heading>Typescript</Heading>
@@ -27,8 +25,8 @@ function RouteComponent() {
           <Link key={route.key} to={route.key}>
             <div>{route.key}</div>
           </Link>
-        );
+        )
       })}
     </div>
-  );
+  )
 }
