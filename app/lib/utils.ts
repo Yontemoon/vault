@@ -6,6 +6,15 @@ function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// * "return-types" ==> "Return Types"
+function slugToTitle(slug: string) {
+  return slug
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ")
+    .trim();
+}
+
 // TODO: FIGURE OUT THE url param type here.
 // TODO: INSTEAD OF STRING, SHOULD BE ENUM OF URLS
 function urlToTitle(url: string): string {
@@ -20,8 +29,8 @@ function urlToTitle(url: string): string {
   return title.trim();
 }
 
-// RETURN THE PARENT URL IN ROUTES
-// /typescript/grouped-types => /typescript
+// * RETURN THE PARENT URL IN ROUTES
+// * /typescript/grouped-types => /typescript
 function getParentUrl(url: string): string {
   const urlArr = url.split("/");
   return "/" + urlArr[1];
@@ -46,4 +55,4 @@ function backgroundLangStyle(
   }
 }
 
-export { cn, urlToTitle, getParentUrl, backgroundLangStyle };
+export { cn, urlToTitle, getParentUrl, backgroundLangStyle, slugToTitle };
