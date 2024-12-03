@@ -18,6 +18,7 @@ export default defineConfig({
     ],
   },
   server: {
+    compatibilityDate: "2024-12-03",
     preset: "vercel",
     prerender: {
       routes: ["/", "/react", "/typescript", "/html", "/css", "javascript"],
