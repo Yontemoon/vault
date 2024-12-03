@@ -17,11 +17,10 @@ export default defineConfig({
       },
     ],
   },
-
   server: {
     preset: "vercel",
     prerender: {
-      routes: ["/react", "/typescript"],
+      routes: ["/react", "/typescript", "/html", "/css", "javascript"],
       crawlLinks: true,
     },
   },

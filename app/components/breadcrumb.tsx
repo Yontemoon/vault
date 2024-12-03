@@ -3,7 +3,6 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
-  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Link, useRouterState } from "@tanstack/react-router";
@@ -21,7 +20,7 @@ const BreadcrumbComponent = () => {
   }, [router]);
 
   return (
-    <Breadcrumb>
+    <Breadcrumb className="mb-5">
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink asChild>
@@ -37,7 +36,7 @@ const BreadcrumbComponent = () => {
                   className="flex flex-row justify-center content-center"
                   key={i}
                 >
-                  <BreadcrumbSeparator className="flex justify-center align-middle content-center" />
+                  <BreadcrumbSeparator />
                   <BreadcrumbItem>
                     <BreadcrumbLink>{titleRoute}</BreadcrumbLink>
                   </BreadcrumbItem>
@@ -49,7 +48,7 @@ const BreadcrumbComponent = () => {
                   className="flex flex-row justify-center content-center"
                   key={i}
                 >
-                  <BreadcrumbSeparator className="flex justify-center align-middle content-center" />
+                  <BreadcrumbSeparator />
                   <BreadcrumbItem>
                     <BreadcrumbLink asChild>
                       <Link to={`/${currRoute}`}>{titleRoute}</Link>

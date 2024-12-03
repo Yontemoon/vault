@@ -30,6 +30,13 @@ export function ThemeProvider({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem(storageKey) as Theme | null;
+      setTheme(savedTheme || defaultTheme);
+    }
+  }, [defaultTheme, storageKey]);
+
+  useEffect(() => {
+    if (typeof window !== "undefined" && theme) {
       const root = window.document.documentElement;
 
       root.classList.remove("light", "dark");
@@ -41,19 +48,22 @@ export function ThemeProvider({
           : "light";
 
         root.classList.add(systemTheme);
-        return;
+      } else {
+        root.classList.add(theme);
       }
-
-      root.classList.add(theme);
     }
   }, [theme]);
 
+  const handleSetTheme = (newTheme: Theme) => {
+    if (typeof window !== "undefined") {
+      localStorage.setItem(storageKey, newTheme);
+    }
+    setTheme(newTheme);
+  };
+
   const value = {
     theme,
-    setTheme: (theme: Theme) => {
-      localStorage.setItem(storageKey, theme);
-      setTheme(theme);
-    },
+    setTheme: handleSetTheme,
   };
 
   return (
@@ -66,8 +76,9 @@ export function ThemeProvider({
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
 
-  if (context === undefined)
+  if (context === undefined) {
     throw new Error("useTheme must be used within a ThemeProvider");
+  }
 
   return context;
 };
