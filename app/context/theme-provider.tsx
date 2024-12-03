@@ -26,44 +26,38 @@ export function ThemeProvider({
   storageKey = "theme",
   ...props
 }: ThemeProviderProps) {
-  const [theme, setTheme] = useState<Theme>(defaultTheme);
-
-  useEffect(() => {
+  const [theme, setTheme] = useState<Theme>(() => {
     if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem(storageKey) as Theme | null;
-      setTheme(savedTheme || defaultTheme);
+      return localStorage.getItem(storageKey) as Theme;
+    } else {
+      return defaultTheme;
     }
-  }, [defaultTheme, storageKey]);
+  });
 
   useEffect(() => {
-    if (typeof window !== "undefined" && theme) {
-      const root = window.document.documentElement;
+    const root = window.document.documentElement;
 
-      root.classList.remove("light", "dark");
+    root.classList.remove("light", "dark");
 
-      if (theme === "system") {
-        const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-          .matches
-          ? "dark"
-          : "light";
+    if (theme === "system") {
+      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
+        .matches
+        ? "dark"
+        : "light";
 
-        root.classList.add(systemTheme);
-      } else {
-        root.classList.add(theme);
-      }
+      root.classList.add(systemTheme);
+      return;
     }
+
+    root.classList.add(theme);
   }, [theme]);
-
-  const handleSetTheme = (newTheme: Theme) => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem(storageKey, newTheme);
-    }
-    setTheme(newTheme);
-  };
 
   const value = {
     theme,
-    setTheme: handleSetTheme,
+    setTheme: (theme: Theme) => {
+      localStorage.setItem(storageKey, theme);
+      setTheme(theme);
+    },
   };
 
   return (
@@ -76,9 +70,8 @@ export function ThemeProvider({
 export const useTheme = () => {
   const context = useContext(ThemeProviderContext);
 
-  if (context === undefined) {
+  if (context === undefined)
     throw new Error("useTheme must be used within a ThemeProvider");
-  }
 
   return context;
 };

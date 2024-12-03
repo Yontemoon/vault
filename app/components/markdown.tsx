@@ -20,7 +20,6 @@ const MarkdownComp = ({ content }: PropTypes) => {
     const current = NAVIGATION_LINKS.find((n) => n.href === parent);
     return current?.abbreviation || "js";
   }, [location]);
-  console.log(currentNav);
   return (
     <article>
       <Markdown
