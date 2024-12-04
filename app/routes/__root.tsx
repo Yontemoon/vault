@@ -52,7 +52,7 @@ function RootComponent() {
     <RootDocument>
       <ThemeProvider>
         <HeaderNavBar />
-        <div className="mx-auto w-ful max-w-5xl">
+        <div className="mx-auto w-full max-w-5xl min-h-[79vh]">
           <main className=" mx-5">
             <div className="w-full">
               <Outlet />
@@ -71,6 +71,17 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
     <html lang="en">
       <head>
         <Meta />
+        {import.meta.env.DEV && (
+          <script
+            type="module"
+            dangerouslySetInnerHTML={{
+              __html: `import RefreshRuntime from "/_build/@react-refresh";
+              RefreshRuntime.injectIntoGlobalHook(window)
+              window.$RefreshReg$ = () => {}
+              window.$RefreshSig$ = () => (type) => type`,
+            }}
+          />
+        )}
       </head>
       <body>
         <React.Suspense>{children}</React.Suspense>

@@ -1,18 +1,14 @@
 # Discriminated Unions
 
-```ts
-/**
- *
- * ? November 2nd, 2024
- *
- * * Use case:
- * * Fetching data from an API, but the response is different based on if the response was a success or not
- * * The respone will usually have a common key, such as "status", so Typescript can infer based on what the
- * * union type is. In this case, we have a status of 200 or 400, and that status response will dictate what the the
- * * other keys are.
- *
- */
+### December 3rd, 2024
 
+---
+
+When working with 3rd party API's where you don't have access to the types being returned. You can create two separate
+types and combine with with an or statement. Because the two responses will usually have a common key, in this case "status",
+so Typescript can infer based on the union type.
+
+```ts
 type SuccessResponse = {
   status: 200;
   data: {
@@ -27,7 +23,11 @@ type ErrorResponse = {
 };
 
 type UserApiResponse = SuccessResponse | ErrorResponse;
+```
 
+You can then create a function that does what it needs to do based on what the status returns.
+
+```ts
 function getData(res: UserApiResponse) {
   switch (res.status) {
     case 200:

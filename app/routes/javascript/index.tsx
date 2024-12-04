@@ -22,12 +22,13 @@ function RouteComponent() {
       </p>
       <br />
       <br />
-      <p>Hello world this is a test.</p>
       {routes.map((route) => {
         return (
-          <Link key={route.key} to={route.key}>
-            <div>{route.key}</div>
-          </Link>
+          <div key={route.key} className="border border-black">
+            <Link to={route.key}>
+              <div>{route.key}</div>
+            </Link>
+          </div>
         );
       })}
     </div>

@@ -1,13 +1,22 @@
-import { createFileRoute, Link } from '@tanstack/react-router'
-import useAllPaths from '@/hooks/use-all-paths'
-import Heading from '@/components/heading'
+import { createFileRoute, Link } from "@tanstack/react-router";
+import useAllPaths from "@/hooks/use-all-paths";
+import Heading from "@/components/heading";
 
-export const Route = createFileRoute('/typescript/')({
+export const Route = createFileRoute("/typescript/")({
+  head: () => ({
+    meta: [
+      {
+        title: "Monte Vault | Typescript",
+        content: "Typescript Home page for Monte's Vault",
+      },
+    ],
+  }),
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  const routes = useAllPaths()
+  const routes = useAllPaths();
+  console.log(routes);
   return (
     <div>
       <Heading>Typescript</Heading>
@@ -20,13 +29,20 @@ function RouteComponent() {
         application so i can look at it later before I forget.
       </p>
       <br />
-      {routes.map((route) => {
-        return (
-          <Link key={route.key} to={route.key}>
-            <div>{route.key}</div>
-          </Link>
-        )
-      })}
+      <div className="flex flex-col items-center w-full">
+        {routes.map((route) => {
+          return (
+            <div
+              key={route.key}
+              className="border-black border text-center mb-2 sm:w-[600px] w-full mx-4 sm:mx-0"
+            >
+              <Link to={route.key}>
+                <div>{route.key}</div>
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </div>
-  )
+  );
 }
