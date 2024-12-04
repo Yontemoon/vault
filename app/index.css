@@ -90,4 +90,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  p {
+    @apply text-lg scroll-m-12 mb-5;
+  }
 }
