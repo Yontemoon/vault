@@ -1,22 +1,22 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import useAllPaths from "@/hooks/use-all-paths";
 import Heading from "@/components/heading";
+import seo from "@/lib/seo";
 
 export const Route = createFileRoute("/typescript/")({
-  head: () => ({
-    meta: [
-      {
-        title: "Monte Vault | Typescript",
-        content: "Typescript Home page for Monte's Vault",
-      },
-    ],
-  }),
+  head: () => {
+    return {
+      meta: seo({
+        title: "Monte's Vault | Typescript",
+        description: "Main page for Monte's Vault Typescript section.",
+      }),
+    };
+  },
   component: RouteComponent,
 });
 
 function RouteComponent() {
   const routes = useAllPaths();
-  console.log(routes);
   return (
     <div>
       <Heading>Typescript</Heading>
