@@ -1,6 +1,7 @@
 import Heading from "@/components/heading";
 import useAllPaths from "@/hooks/use-all-paths";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { TYPESCRIPT_ROUTES } from "@/lib/constants";
 
 export const Route = createFileRoute("/javascript/")({
   component: RouteComponent,
@@ -22,15 +23,26 @@ function RouteComponent() {
       </p>
       <br />
       <br />
-      {routes.map((route) => {
-        return (
-          <div key={route.key} className="border border-black">
-            <Link to={route.key}>
-              <div>{route.key}</div>
-            </Link>
-          </div>
-        );
-      })}
+      <div className="flex justify-center flex-col items-center">
+        {TYPESCRIPT_ROUTES.map((route) => {
+          return (
+            <div
+              key={route.title}
+              className="border border-black mb-3 sm:w-[500px] w-full bg-backgroundJs hover:bg-backgroundJs/90"
+            >
+              <Link to={route.href}>
+                <div className="flex flex-col w-full p-4">
+                  <div className="flex flex-row gap-5 w-full justify-between">
+                    <Heading size="md">{route.title}</Heading>
+                    <p>{route.date}</p>
+                  </div>
+                  <div>{route.description}</div>
+                </div>
+              </Link>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

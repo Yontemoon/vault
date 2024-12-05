@@ -17,6 +17,7 @@ export const Route = createFileRoute("/typescript/")({
 
 function RouteComponent() {
   const routes = useAllPaths();
+  console.log(routes);
   return (
     <div>
       <Heading>Typescript</Heading>
