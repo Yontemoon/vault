@@ -50,9 +50,7 @@ const MarkdownComp = ({ content }: PropTypes) => {
           a: ({ children }) => {
             return <Link to="/">{children}</Link>;
           },
-          p: ({ children }) => (
-            <p className="text-lg scroll-m-12 mb-5">{children}</p>
-          ),
+          p: ({ children }) => <p>{children}</p>,
           code: ({ className, children, style, ref, ...props }) => {
             const match = /language-(\w+)/.exec(className || "");
             return match ? (
@@ -60,7 +58,10 @@ const MarkdownComp = ({ content }: PropTypes) => {
                 language={match[1]}
                 PreTag="div"
                 style={xonokai}
-                className="my-5"
+                className="my-5 text-lg"
+                codeTagProps={{
+                  className: "font-sans text-lg",
+                }}
                 {...props}
               >
                 {String(children).replace(/\n$/, "")}
