@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import useAllPaths from "@/hooks/use-all-paths";
 import Heading from "@/components/heading";
 import seo from "@/lib/seo";
+import { TYPESCRIPT_ROUTES } from "@/lib/constants";
 
 export const Route = createFileRoute("/typescript/")({
   head: () => {
@@ -30,20 +31,24 @@ function RouteComponent() {
         application so i can look at it later before I forget.
       </p>
       <br />
-      <div className="flex flex-col items-center w-full">
-        {routes.map((route) => {
-          return (
-            <div
-              key={route.key}
-              className="border-black border text-center mb-2 sm:w-[600px] w-full mx-4 sm:mx-0"
-            >
-              <Link to={route.key}>
-                <div>{route.key}</div>
-              </Link>
-            </div>
-          );
-        })}
-      </div>
+      {TYPESCRIPT_ROUTES.map((route) => {
+        return (
+          <div
+            key={route.title}
+            className="border border-black mb-3 sm:w-[500px] w-full bg-backgroundTs hover:bg-backgroundTs/90 transition-all duration-300"
+          >
+            <Link to={`${route.href}`}>
+              <div className="flex flex-col w-full p-4">
+                <div className="flex flex-row gap-5 w-full justify-between">
+                  <Heading size="md">{route.title}</Heading>
+                  <p>{route.date}</p>
+                </div>
+                <div>{route.description}</div>
+              </div>
+            </Link>
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -1,14 +1,21 @@
 import Heading from "@/components/heading";
-import useAllPaths from "@/hooks/use-all-paths";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { TYPESCRIPT_ROUTES } from "@/lib/constants";
+import { JAVASCRIPT_ROUTES } from "@/lib/constants";
+import seo from "@/lib/seo";
 
 export const Route = createFileRoute("/javascript/")({
   component: RouteComponent,
+  head: () => {
+    return {
+      meta: seo({
+        title: "Monte's Vault | Javascript",
+        description: "Main page for Monte's Vault Javascript section.",
+      }),
+    };
+  },
 });
 
 function RouteComponent() {
-  const routes = useAllPaths();
   return (
     <div>
       <Heading>Javascript</Heading>
@@ -24,13 +31,13 @@ function RouteComponent() {
       <br />
       <br />
       <div className="flex justify-center flex-col items-center">
-        {TYPESCRIPT_ROUTES.map((route) => {
+        {JAVASCRIPT_ROUTES.map((route) => {
           return (
             <div
               key={route.title}
-              className="border border-black mb-3 sm:w-[500px] w-full bg-backgroundJs hover:bg-backgroundJs/90"
+              className="border border-black mb-3 sm:w-[500px] w-full bg-backgroundJs hover:bg-backgroundJs/90 transition-all duration-300"
             >
-              <Link to={route.href}>
+              <Link to={`${route.href}`}>
                 <div className="flex flex-col w-full p-4">
                   <div className="flex flex-row gap-5 w-full justify-between">
                     <Heading size="md">{route.title}</Heading>
