@@ -40,64 +40,94 @@ const NAVIGATION_LINKS = [
 const TYPESCRIPT_ROUTES = [
   {
     title: "Awaited",
-    href: "/awaited",
+    href: "/typescript/awaited",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Check Types",
-    href: "/awaited",
+    href: "/typescript/check-types",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Const Read Only",
-    href: "/awaited",
+    href: "/typescript/const-read-only",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Discriminated Unions",
-    href: "/awaited",
+    href: "/typescript/discriminated-unions",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Generics",
-    href: "/awaited",
+    href: "/typescript/generics",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Grouped Types",
-    href: "/awaited",
+    href: "/typescript/grouped-types",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Partial and Required",
-    href: "/awaited",
+    href: "/typescript/partial-and-required",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Pick and Omit",
-    href: "/awaited",
+    href: "/typescript/pick-and-omit",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Record",
-    href: "/awaited",
+    href: "/typescript/record",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
   {
     title: "Return Types",
-    href: "/awaited",
+    href: "/typescript/return-types",
     description: "Learn about the 'Awaited' Generic in Typescript.",
     date: "November 2nd, 2024",
   },
 ];
 
-export { NAVIGATION_LINKS, TYPESCRIPT_ROUTES };
+const JAVASCRIPT_ROUTES = [
+  {
+    title: "testing",
+    href: "/javascript/testing",
+    description: "Some kind of description",
+    date: "December 4th, 2024",
+  },
+];
+
+const REACT_ROUTES = [
+  {
+    title: "Element Props",
+    href: "/react/element-props",
+    description: "Element Description",
+    date: "December 4th, 2024",
+  },
+  {
+    title: "Generic Components",
+    href: "/react/generic-components",
+    description: "generic-components Description",
+    date: "December 4th, 2024",
+  },
+  {
+    title: "useRef",
+    href: "/react/use-ref",
+    description: "useRef description.",
+    date: "December 4th, 2024",
+  },
+];
+
+export { NAVIGATION_LINKS, TYPESCRIPT_ROUTES, JAVASCRIPT_ROUTES, REACT_ROUTES };
