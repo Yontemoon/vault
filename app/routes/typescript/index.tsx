@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import useAllPaths from "@/hooks/use-all-paths";
 import Heading from "@/components/heading";
 import seo from "@/lib/seo";
 import { TYPESCRIPT_ROUTES } from "@/lib/constants";
+import RouteCard from "@/components/route-card";
 
 export const Route = createFileRoute("/typescript/")({
   head: () => {
@@ -17,11 +17,9 @@ export const Route = createFileRoute("/typescript/")({
 });
 
 function RouteComponent() {
-  const routes = useAllPaths();
-  console.log(routes);
   return (
     <div>
-      <Heading>Typescript</Heading>
+      <Heading className="tracking-wide mb-5">Typescript</Heading>
       <p>
         I love Typescript. There is so much to learn, its practically endless.
         This section, like all my sections, is not a comprehensive guide on said
@@ -33,20 +31,19 @@ function RouteComponent() {
       <br />
       {TYPESCRIPT_ROUTES.map((route) => {
         return (
-          <div
-            key={route.title}
-            className="border border-black mb-3 sm:w-[500px] w-full bg-backgroundTs hover:bg-backgroundTs/90 transition-all duration-300"
-          >
+          <RouteCard key={route.title} slug="typescript">
             <Link to={`${route.href}`}>
               <div className="flex flex-col w-full p-4">
                 <div className="flex flex-row gap-5 w-full justify-between">
-                  <Heading size="md">{route.title}</Heading>
+                  <Heading size="md" className="tracking-wider">
+                    {route.title}
+                  </Heading>
                   <p>{route.date}</p>
                 </div>
                 <div>{route.description}</div>
               </div>
             </Link>
-          </div>
+          </RouteCard>
         );
       })}
     </div>

@@ -3,6 +3,7 @@ import Heading from "@/components/heading";
 import useAllPaths from "@/hooks/use-all-paths";
 import { REACT_ROUTES } from "@/lib/constants";
 import seo from "@/lib/seo";
+import RouteCard from "@/components/route-card";
 
 export const Route = createFileRoute("/react/")({
   component: RouteComponent,
@@ -28,10 +29,7 @@ function RouteComponent() {
       </Heading>
       {REACT_ROUTES.map((route) => {
         return (
-          <div
-            key={route.title}
-            className="border border-black mb-3 sm:w-[500px] w-full bg-backgroundTs hover:bg-backgroundTs/90 transition-all duration-300"
-          >
+          <RouteCard key={route.title} slug="react">
             <Link to={`${route.href}`}>
               <div className="flex flex-col w-full p-4">
                 <div className="flex flex-row gap-5 w-full justify-between">
@@ -41,7 +39,7 @@ function RouteComponent() {
                 <div>{route.description}</div>
               </div>
             </Link>
-          </div>
+          </RouteCard>
         );
       })}
     </div>

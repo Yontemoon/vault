@@ -14,17 +14,17 @@ function Index() {
       <Heading>
         A website to brain dump all the cool snippet of code that I either just
         learned, coded myself (rare), or found online that I thought was very
-        cool.
+        cool. More sections are coming such as CSS and HTML!
       </Heading>
       <Heading size="md" as="h3">
         Check out some cool snippets of code.
       </Heading>
-      <div className="grid md:grid-cols-2 grid-cols-1 w-full gap-5">
+      <div className="grid grid-cols-1 w-full gap-5">
         <Card language="js">Javascript</Card>
         <Card language="ts">Typescript</Card>
         <Card language="react">React</Card>
-        <Card language="css">CSS</Card>
-        <Card language="html">HTML</Card>
+        {/* <Card language="css">CSS</Card>
+        <Card language="html">HTML</Card> */}
       </div>
     </div>
   );
