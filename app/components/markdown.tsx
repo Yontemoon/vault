@@ -62,7 +62,7 @@ const MarkdownComp = ({ content }: PropTypes) => {
               <SyntaxHighlighter
                 language={match[1]}
                 style={theme === "dark" ? oneDark : oneLight}
-                className="my-5 border border-foreground box-border "
+                className="my-5 border border-foreground box-border"
                 customStyle={{
                   borderRadius: 0,
                 }}

@@ -9,7 +9,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="mx-5 flex justify-center items-center text-center flex-col gap-8">
+    <div className="mx-5 flex justify-center items-center text-center flex-col gap-8 mt-20">
       <Heading size="xl">Vaults</Heading>
       <Heading>
         A website to brain dump all the cool snippet of code that I either just
@@ -17,14 +17,15 @@ function Index() {
         cool. More sections are coming such as CSS and HTML!
       </Heading>
       <Heading size="md" as="h3">
-        Check out some cool snippets of code.
+        Check out some cool snippets of code:
       </Heading>
       <div className="grid grid-cols-1 w-full gap-5">
         <Card language="js">Javascript</Card>
         <Card language="ts">Typescript</Card>
         <Card language="react">React</Card>
-        {/* <Card language="css">CSS</Card>
-        <Card language="html">HTML</Card> */}
+        {/* // TODO: Add once I am ready */}
+        {/* <Card language="css">CSS</Card> */}
+        {/* <Card language="html">HTML</Card> */}
       </div>
     </div>
   );
@@ -41,7 +42,7 @@ const Card = ({ children, language, ...props }: CardType) => {
     <Link to={currentLang?.href}>
       <button
         className={cn(
-          "text-lg min-h-16 m-auto border shadow-xl w-full rounded-md flex justify-center items-center  hover:cursor-pointer transition-all",
+          "text-lg min-h-16 m-auto border w-full flex justify-center items-center hover:cursor-pointer transition-all border-foreground box-border",
           language === "ts" && "bg-backgroundTs hover:bg-backgroundTs/90",
           language === "js" && "bg-backgroundJs hover:bg-backgroundJs/90",
           language === "react" &&
@@ -51,7 +52,9 @@ const Card = ({ children, language, ...props }: CardType) => {
         )}
         {...props}
       >
-        {children}
+        <Heading size="md" as="h2" className="tracking-wider">
+          {children}
+        </Heading>
       </button>
     </Link>
   );
