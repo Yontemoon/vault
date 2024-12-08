@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import Heading from "@/components/heading";
-import useAllPaths from "@/hooks/use-all-paths";
 import { REACT_ROUTES } from "@/lib/constants";
 import seo from "@/lib/seo";
 import RouteCard from "@/components/route-card";
+import { Separator } from "@/components/ui/separator";
 
 export const Route = createFileRoute("/react/")({
   component: RouteComponent,
@@ -18,15 +18,22 @@ export const Route = createFileRoute("/react/")({
 });
 
 function RouteComponent() {
-  const routes = useAllPaths();
   return (
     <div>
-      <Heading as="h1" size="xl">
+      <Heading as="h1" size="xl" className="mb-5 tracking-wide">
         React
       </Heading>
-      <Heading as="h2" size="sm">
-        The library that feels like a framework.
-      </Heading>
+      <Separator
+        className={"my-4 bg-backgroundReact box-border border-black border"}
+      />
+      <p>
+        React has become my main frontend package for every project I am a part
+        of. My main role in my current job is a frontend developer, so I need to
+        be up to date with all the latest and greatest regarding React. Some of
+        these topics are obvious to some, and new to others. Everything in here
+        is for my own benefit and to make creating complex projects as simple as
+        possible.
+      </p>
       {REACT_ROUTES.map((route) => {
         return (
           <RouteCard key={route.title} slug="react">
