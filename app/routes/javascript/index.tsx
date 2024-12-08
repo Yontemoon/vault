@@ -3,6 +3,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { JAVASCRIPT_ROUTES } from "@/lib/constants";
 import seo from "@/lib/seo";
 import RouteCard from "@/components/route-card";
+import { Separator } from "@/components/ui/separator";
 
 export const Route = createFileRoute("/javascript/")({
   component: RouteComponent,
@@ -20,8 +21,8 @@ function RouteComponent() {
   return (
     <div>
       <Heading>Javascript</Heading>
+      <Separator className="bg-backgroundJs border-black border my-5" />
       <p>Ahhh... Vanilla Javascript. Don't think I forgot about you!</p>
-      <br />
       <p>
         Writing Javascript without type safety now feels like walking outside
         naked. I just feel exposed. While i rarely use Vanilla JS, this section
@@ -29,8 +30,6 @@ function RouteComponent() {
         and I accepted that I won't ever learn everything to learn. But I'll
         give it a try with this website.
       </p>
-      <br />
-      <br />
       {JAVASCRIPT_ROUTES.map((route) => {
         return (
           <RouteCard key={route.title} slug="javascript">

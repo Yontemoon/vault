@@ -3,6 +3,7 @@ import Heading from "@/components/heading";
 import seo from "@/lib/seo";
 import { TYPESCRIPT_ROUTES } from "@/lib/constants";
 import RouteCard from "@/components/route-card";
+import { Separator } from "@/components/ui/separator";
 
 export const Route = createFileRoute("/typescript/")({
   head: () => {
@@ -20,6 +21,7 @@ function RouteComponent() {
   return (
     <div>
       <Heading className="tracking-wide mb-5">Typescript</Heading>
+      <Separator className="bg-backgroundTs border-black border my-5" />
       <p>
         I love Typescript. There is so much to learn, its practically endless.
         This section, like all my sections, is not a comprehensive guide on said
