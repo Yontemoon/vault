@@ -1,5 +1,9 @@
 # Const Read Only
 
+## December 7th, 2024
+
+---
+
 ```ts
 /**
  * ? October 31st, 2024
@@ -19,6 +23,8 @@ type Person = {
 SKILL_LEVELS.forEach((skillLevel) => {
   console.log(skillLevel);
 });
+
+// Will print all the skill levels one by one.
 
 const testPerson: Person = {
   name: "Monte",
