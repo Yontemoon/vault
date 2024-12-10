@@ -2,6 +2,7 @@ import Heading from "@/components/heading";
 import { cn } from "@/lib/utils";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { NAVIGATION_LINKS } from "@/lib/constants";
+import RouteCard from "@/components/route-card";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -20,9 +21,21 @@ function Index() {
         Check out some cool snippets of code:
       </Heading>
       <div className="grid grid-cols-1 w-full gap-5">
-        <Card language="js">Javascript</Card>
-        <Card language="ts">Typescript</Card>
-        <Card language="react">React</Card>
+        <Link to="/javascript">
+          <RouteCard slug="javascript">
+            <Heading size="md">Javascript</Heading>
+          </RouteCard>
+        </Link>
+        <Link to="/typescript">
+          <RouteCard slug="typescript">
+            <Heading size="md">Typescript</Heading>
+          </RouteCard>
+        </Link>
+        <Link to="/react">
+          <RouteCard slug="react">
+            <Heading size="md">React</Heading>
+          </RouteCard>
+        </Link>
         {/* // TODO: Add once I am ready */}
         {/* <Card language="css">CSS</Card> */}
         {/* <Card language="html">HTML</Card> */}
@@ -30,32 +43,3 @@ function Index() {
     </div>
   );
 }
-
-type CardType = {
-  children: React.ReactNode;
-  language: "ts" | "js" | "react" | "html" | "css";
-} & React.ComponentProps<"button">;
-
-const Card = ({ children, language, ...props }: CardType) => {
-  const currentLang = NAVIGATION_LINKS.find((n) => n.abbreviation === language);
-  return (
-    <Link to={currentLang?.href}>
-      <button
-        className={cn(
-          "text-lg min-h-16 m-auto border w-full flex justify-center items-center hover:cursor-pointer transition-all border-foreground box-border",
-          language === "ts" && "bg-backgroundTs hover:bg-backgroundTs/90",
-          language === "js" && "bg-backgroundJs hover:bg-backgroundJs/90",
-          language === "react" &&
-            "bg-backgroundReact hover:bg-backgroundReact/90",
-          language === "css" && "bg-backgroundCss hover:bg-backgroundCss/90",
-          language === "html" && "bg-backgroundHtml hover:bg-backgroundHtml/90"
-        )}
-        {...props}
-      >
-        <Heading size="md" as="h2" className="tracking-wider">
-          {children}
-        </Heading>
-      </button>
-    </Link>
-  );
-};

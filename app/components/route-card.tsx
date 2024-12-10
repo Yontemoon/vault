@@ -18,7 +18,7 @@ const RouteCard = ({
     <div
       className={clsx(
         `
-          border border-foreground relative mb-5 transitional-all duration-300
+          border border-foreground relative mb-5 transitional-all duration-300 min-h-16
           after:bg-foreground after:-bottom-[5px] after:block after:absolute after:content-[''] after:transition-all after:duration-150 after:-z-10
           before:bg-foreground before:-bottom-[5px] before:block before:absolute before:content-[''] before:transition-all before:duration-150 before:-z-10
           after:h-[5px] after:left-0 after:right-[5px]
@@ -41,7 +41,7 @@ const RouteCard = ({
       )}
       {...props}
     >
-      {children}
+      <div className="flex flex-col w-full p-4">{children}</div>
     </div>
   );
 };

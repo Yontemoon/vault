@@ -32,17 +32,15 @@ function RouteComponent() {
       </p>
       {JAVASCRIPT_ROUTES.map((route) => {
         return (
-          <RouteCard key={route.title} slug="javascript">
-            <Link to={`${route.href}`}>
-              <div className="flex flex-col w-full p-4">
-                <div className="flex flex-row gap-5 w-full justify-between">
-                  <Heading size="md">{route.title}</Heading>
-                  <p>{route.date}</p>
-                </div>
-                <div>{route.description}</div>
+          <Link to={`${route.href}`}>
+            <RouteCard key={route.title} slug="javascript">
+              <div className="flex flex-row gap-5 w-full justify-between">
+                <Heading size="md">{route.title}</Heading>
+                <p>{route.date}</p>
               </div>
-            </Link>
-          </RouteCard>
+              <div>{route.description}</div>
+            </RouteCard>
+          </Link>
         );
       })}
     </div>

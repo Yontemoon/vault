@@ -36,8 +36,8 @@ function RouteComponent() {
       </p>
       {REACT_ROUTES.map((route) => {
         return (
-          <RouteCard key={route.title} slug="react">
-            <Link to={`${route.href}`}>
+          <Link to={`${route.href}`}>
+            <RouteCard key={route.title} slug="react">
               <div className="flex flex-col w-full p-4">
                 <div className="flex flex-row gap-5 w-full justify-between">
                   <Heading size="md">{route.title}</Heading>
@@ -45,8 +45,8 @@ function RouteComponent() {
                 </div>
                 <div>{route.description}</div>
               </div>
-            </Link>
-          </RouteCard>
+            </RouteCard>
+          </Link>
         );
       })}
     </div>
