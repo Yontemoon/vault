@@ -23,9 +23,7 @@ function RouteComponent() {
       <Heading as="h1" size="xl" className="mb-5 tracking-wide">
         React
       </Heading>
-      <Separator
-        className={"my-4 bg-backgroundReact box-border border-black border"}
-      />
+      <Separator className={"my-4"} language="react" />
       <p>
         React has become my main frontend package for every project I am a part
         of. My main role in my current job is a frontend developer, so I need to

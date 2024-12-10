@@ -51,7 +51,7 @@ function backgroundLangStyle(
     case "html":
       return "bg-backgroundHtml";
     default:
-      return "bg-background";
+      return "bg-foreground";
   }
 }
 

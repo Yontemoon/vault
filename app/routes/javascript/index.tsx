@@ -21,7 +21,7 @@ function RouteComponent() {
   return (
     <div>
       <Heading>Javascript</Heading>
-      <Separator className="bg-backgroundJs border-black border my-5" />
+      <Separator className="my-5" language="js" />
       <p>Ahhh... Vanilla Javascript. Don't think I forgot about you!</p>
       <p>
         Writing Javascript without type safety now feels like walking outside

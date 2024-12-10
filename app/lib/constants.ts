@@ -37,6 +37,8 @@ const NAVIGATION_LINKS = [
   },
 ] as const;
 
+type TAbbreviations = (typeof NAVIGATION_LINKS)[number]["abbreviation"];
+
 const TYPESCRIPT_ROUTES = [
   {
     title: "Awaited",
@@ -130,4 +132,5 @@ const REACT_ROUTES = [
   },
 ];
 
+export type { TAbbreviations };
 export { NAVIGATION_LINKS, TYPESCRIPT_ROUTES, JAVASCRIPT_ROUTES, REACT_ROUTES };
