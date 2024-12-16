@@ -1,28 +1,27 @@
-```ts
-/**
- * ? November 2nd, 2024
- *
- * ! I think this one important
- * * Record <keys, Type>
- * * How I see it, a utility type that groups your original type into specific groups.
- * * In this example, it groups a people into their age.
- *
- */
+# Record
 
+## December 15th, 2024
+
+---
+
+One of the most common "utility" types I use quite often is the Record type. Its a type that allows you to group your original type into specific groups.
+
+Here is an example of what I mean. We have a simple Person type that has a name, their age, and if they are a citizen.
+
+```ts
 type Person = {
   name: string;
   age: number;
   isCitizen: boolean;
 };
+```
 
-// This and Record are basically the same thing... just different syntax
-type PeopleGroupedByAge = {
-  [key: Person["age"]]: Person[];
-};
+What if I wanted to create a function that maps an array of Person and returns an object that has a key of the age, and an array of Person that fit that age.
 
-type RecordPeopleGroupedByAge = Record<Person["age"], Person[]>;
+For example, i want to return something like this:
 
-const groupedByAge: RecordPeopleGroupedByAge = {
+```ts
+const groupedByAge = {
   24: [
     {
       name: "Monte",
@@ -54,3 +53,19 @@ const groupedByAge: RecordPeopleGroupedByAge = {
   ],
 };
 ```
+
+You can create a new type of this that will look like this:
+
+```ts
+type PeopleGroupedByAge = {
+  [key: Person["age"]]: Person[];
+};
+```
+
+This is not wrong, but there is a simplier answer to this! This is where Records come in:
+
+```ts
+type RecordPeopleGroupedByAge = Record<Person["age"], Person[]>;
+```
+
+It takes in two parameters, a Key and a Value. Pretty simple!
